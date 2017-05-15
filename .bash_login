@@ -1,0 +1,13 @@
+#executed by bash when login shell starts
+
+#because apparently this file gets sourced alone now
+. .bashrc
+
+#auto tmux in ttys
+if [ tty = "/dev/tty*" ]; then
+    if [ "tmux ls" != "no sessions" ]; then
+        tmux a
+    else
+        tmux
+    fi
+fi
