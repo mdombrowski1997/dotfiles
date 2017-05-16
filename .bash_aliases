@@ -1,6 +1,26 @@
-#navigation
-alias up='cd ..'
+#~/.bash_aliases - personal aliases sourced by ~/.bashrc
+#for consistency, headers are wrapped in #,
+#and braces are on columns 52-54.
 
+############
+#navigation#
+############
+#--------------------------------------------------{{{
+alias up='cd ..'
+#go home
+alias home='cd ~'
+#ls variations
+alias ls='ls --color=auto'
+alias  l='ls -CF'
+alias ll='ls -alhF'
+#grep coloring
+alias grep='grep --color=auto'
+#--------------------------------------------------}}}
+
+#######################
+#application launching#
+#######################
+#--------------------------------------------------{{{
 #launch notepadqq for heavier editing
 alias text='notepadqq &> /dev/null & echo ""'
 #launch chromium browser
@@ -11,10 +31,12 @@ alias usage='gnome-system-monitor &> /dev/null & echo ""'
 alias lowriter='lowriter &> /dev/null & echo ""'
 #launch spotify
 alias spotify='spotify &> /dev/null & echo ""'
+#--------------------------------------------------}}}
 
-#go home
-alias home='cd ~'
-
+################
+#system options#
+################
+#--------------------------------------------------{{{
 #check battery level
 alias batt='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage" | grep -v "discharging"'
 #adjust brightness to % passed in of max_brightness
@@ -35,6 +57,14 @@ blight()
 }
 #quick volume manipulation
 alias vol='alsamixer'
+#quick check size of folder
+alias sizeof='du -hs'
+#--------------------------------------------------}}}
+
+################
+#system actions#
+################
+#--------------------------------------------------{{{
 #toggle light dm service
 alias guion='sudo service lightdm start; chvt 7'
 alias guioff='sudo service lightdm stop'
@@ -42,8 +72,10 @@ alias guioff='sudo service lightdm stop'
 alias wifi='nmcli r wifi'
 #compile fast
 alias cl='make all'
-
 #suspend
 alias zzz='systemctl suspend'
 #suspend and close terminal
 alias zx='systemctl suspend; exit'
+#--------------------------------------------------}}}
+
+# vim: set foldmethod=marker:

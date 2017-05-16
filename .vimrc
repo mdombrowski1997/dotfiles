@@ -1,47 +1,68 @@
+"~/.vimrc - sourced when vim starts, vim personalizations
+
+""""""""""""""""""""""""""""""""""""
+"Colors, Personalizations, and Such"
+""""""""""""""""""""""""""""""""""""
+"{{{
 "set colors
 colorscheme monokai
-"enable syntax processing
-filetype on
-syntax enable
-
 "change tabs to be 4 spaces
 set tabstop=4
 set softtabstop=4
 set expandtab
-
 "show line numbers
 set number
-
 "show current line on
 set cursorline
-
 "redraw less often, faster maybe
 set lazyredraw
-
 "show matches to parentheses and such
 set showmatch
 "only show matches for 3 tenths of a sec
 set matchtime=3 
+"}}}
 
-"search as I type
-set incsearch
-"highlight all matches
-set hlsearch
-
+"""""""""
+"Folding"
+"""""""""
+"{{{
+"enable syntax processing
+filetype on
+syntax enable
+set modeline
 "enable folding
 set foldenable
 "close all folds when opening file
 set foldlevelstart=0
 "fold based on syntax
 set foldmethod=syntax
+"}}}
 
-"allow aliases in vim!
-set shellcmdflag=-ic
+"""""""""""""""""""""""""
+"Searching and Registers"
+"""""""""""""""""""""""""
+"{{{
+"Searching and Registers"
 "make yank clipboard system clipboard
 set clipboard=unnamed
+"search as I type
+set incsearch
+"highlight all matches
+set hlsearch
+"}}}
 
+"""""""""""""""
+"Misc Settings"
+"""""""""""""""
+"{{{
+"allow aliases in vim!
+set shellcmdflag=-ic
+"}}}
 
-"mappings!!!
+""""""""""
+"Mappings"
+""""""""""
+"{{{
 "Ctrl-S to save
 inoremap <c-s> <esc>:w<cr>
 nnoremap <c-s> :w<cr>
@@ -55,8 +76,13 @@ noremap <left> <nop>
 noremap <right> <nop>
 "use <space> to turn off highlighting after search
 nnoremap <space> :nohl<cr>
+"}}}
 
-"autocommands for even more speed
+""""""""""""""
+"Autocommands"
+""""""""""""""
+"{{{
+"General actions for all files
 augroup general_cmds
     autocmd!
     "change foldmethod during insertion to prevention spontaneous unfolding
@@ -65,9 +91,13 @@ augroup general_cmds
     autocmd InsertLeave, WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 augroup END
 
+"actions for c++ source files
 augroup filetype_cpp
     autocmd!
     "autocmd BufNewFile *.cpp so ~/Documents/Code/cpp/headertemplate
 
     "abbreviations for typo correction and such
 augroup END
+"}}}
+
+" vim: set foldmethod=marker:
