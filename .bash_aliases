@@ -59,6 +59,8 @@ blight()
 alias vol='alsamixer'
 #quick check size of folder
 alias sizeof='du -hs'
+#check apps downloaded with apt-get
+alias apps='zcat /var/log/apt/history.log.*.gz | cat - /var/log/apt/history.log | grep -Po '"'"'^Commandline: apt-get install (?!.*--reinstall)\K.*'"'"''
 #--------------------------------------------------}}}
 
 ################
@@ -66,7 +68,7 @@ alias sizeof='du -hs'
 ################
 #--------------------------------------------------{{{
 #toggle light dm service
-alias guion='sudo service lightdm start; chvt 7'
+alias guion='sudo service lightdm start'
 alias guioff='sudo service lightdm stop'
 #make wireless on/off easier
 alias wifi='nmcli r wifi'

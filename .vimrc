@@ -76,6 +76,10 @@ noremap <left> <nop>
 noremap <right> <nop>
 "use <space> to turn off highlighting after search
 nnoremap <space> :nohl<cr>
+"quick indent
+nnoremap <tab> I<tab><esc>
+"same but for blank line
+nnoremap <return> o<esc>
 "}}}
 
 """"""""""""""

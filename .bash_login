@@ -3,6 +3,13 @@
 #because apparently this file gets sourced alone now
 . .bashrc
 
-#tmux reminder
-echo -e "\nTMUX Sessions"
-tmux ls
+#tmux reminder - unnecessary
+#echo -e "\nTMUX Sessions"
+#tmux ls
+
+#print todo list
+#if [ -f ~/.todo ]; then
+    echo "ToDo:"
+    cat ~/.todo
+    echo ""
+#endif

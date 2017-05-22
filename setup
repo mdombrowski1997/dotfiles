@@ -1,0 +1,47 @@
+#!/bin/bash
+#dotfiles/setup - checks for existence of dotfiles from repo in users home directory,
+#                creates hard links to repo files, backs up existing files as ~/.name.bak
+
+REPOPATH=pwd
+
+#.bash_aliases
+#{{{
+if [ -f ~/.bash_aliases ]; then
+    mv ~/.bash_aliases ~/.bash_aliases.bak
+fi
+ln $(REPOPATH)/.bash_aliases ~/.bash_aliases
+#}}}
+
+#.bash_login
+#{{{
+if [ -f ~/.bash_login ]; then
+    mv ~/.bash_login ~/.bash_login.bak
+fi
+ln $(REPOPATH)/.bash_login ~/.bash_login
+#}}}
+
+#.bashrc
+#{{{
+if [ -f ~/.bashrc ]; then
+    mv ~/.bashrc ~/.bashrc.bak
+fi
+ln $(REPOPATH)/.bashrc ~/.bashrc
+#}}}
+
+#.tmux.conf
+#{{{
+if [ -f ~/.tmux.conf ]; then
+    mv ~/.tmux.conf ~/.tmux.conf.bak
+fi
+ln $(REPOPATH)/.tmux.conf ~/.tmux.conf
+#}}}
+
+#.vimrc
+#{{{
+if [ -f ~/.vimrc ]; then
+    mv ~/.vimrc ~/.vimrc.bak
+fi
+ln $(REPOPATH)/.vimrc ~/.vimrc
+#}}}
+
+# vim: set foldmethod=marker:

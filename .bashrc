@@ -182,3 +182,13 @@ LS_COLORS=$LS_COLORS:'di=01;35:' ; export LS_COLORS
 
 #disable this Ctrl-S, Ctrl-Q nonsense
 stty -ixon
+
+#make history unlimited
+#set history formay
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+#change the file location because certain bash sessions truncate .bash_history file upon close.
+export HISTFILE=~/.bash_history_max
+#force prompt to write history after every command.
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"

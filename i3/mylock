@@ -1,0 +1,11 @@
+#!/bin/bash
+#customized lock over i3lock
+
+#take screenshot
+scrot /tmp/screen.png
+#scale down and back up to blur
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
+#lock with blurred image
+i3lock -i /tmp/screen.png
+#remove blurred screenshot for max safety
+rm /tmp/screen.png
