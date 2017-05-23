@@ -173,7 +173,7 @@ esac
 
 #beginning of personal settings
 #make your own bash prompt line
-PS1="\[$(tput bold)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;7m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
+PS1="\[\e[36m\]\h\[\e[m\]: \[$(tput bold)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[38;5;7m\]\\$\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]"
 PS2="\[$(tput bold)\]\[\033[38;5;220m\]>\[$(tput sgr0)\]\[\033[38;5;86m\]>\[$(tput sgr0)\]"
 
 #better ls colors
