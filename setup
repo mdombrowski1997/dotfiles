@@ -2,46 +2,81 @@
 #dotfiles/setup - checks for existence of dotfiles from repo in users home directory,
 #                creates hard links to repo files, backs up existing files as ~/.name.bak
 
-REPOPATH=pwd
 
 #.bash_aliases
 #{{{
 if [ -f ~/.bash_aliases ]; then
-    mv ~/.bash_aliases ~/.bash_aliases.bak
+    mv --interactive ~/.bash_aliases ~/.bash_aliases.bak
+    echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
 fi
-ln $(REPOPATH)/.bash_aliases ~/.bash_aliases
+ln --interactive .bash_aliases ~/.bash_aliases
 #}}}
 
 #.bash_login
 #{{{
 if [ -f ~/.bash_login ]; then
-    mv ~/.bash_login ~/.bash_login.bak
+    mv --interactive ~/.bash_login ~/.bash_login.bak
+    echo "backing up current ~/.bash_login ~/.bash_login.bak"
 fi
-ln $(REPOPATH)/.bash_login ~/.bash_login
+ln --interactive .bash_login ~/.bash_login
 #}}}
 
 #.bashrc
 #{{{
 if [ -f ~/.bashrc ]; then
-    mv ~/.bashrc ~/.bashrc.bak
+    mv --interactive ~/.bashrc ~/.bashrc.bak
+    echo "backing up current ~/.bashrc as ~/.bashrc.bak"
 fi
-ln $(REPOPATH)/.bashrc ~/.bashrc
+ln --interactive .bashrc ~/.bashrc
 #}}}
 
 #.tmux.conf
 #{{{
 if [ -f ~/.tmux.conf ]; then
-    mv ~/.tmux.conf ~/.tmux.conf.bak
+    mv --interactive ~/.tmux.conf ~/.tmux.conf.bak
+    echo "backing up current ~/.tmux.c asonf ~/.tmux.conf.bak"
 fi
-ln $(REPOPATH)/.tmux.conf ~/.tmux.conf
+ln --interactive .tmux.conf ~/.tmux.conf
 #}}}
 
 #.vimrc
 #{{{
 if [ -f ~/.vimrc ]; then
-    mv ~/.vimrc ~/.vimrc.bak
+    mv --interactive ~/.vimrc ~/.vimrc.bak
+    echo "backing up current ~/.vimrc  as~/.vimrc.bak"
 fi
-ln $(REPOPATH)/.vimrc ~/.vimrc
+ln --interactive .vimrc ~/.vimrc
 #}}}
+
+#.config/i3/config
+#{{{
+if [ -f ~/.config/i3/config ]; then
+    mv --interactive ~/.config/i3/config ~/.config/i3/config.bak
+    echo "backing up current ~/.config as/i3/config ~/.config/i3/config.bak"
+fi
+ln --interactive i3/config ~/.config/i3/config
+#}}}
+
+#.config/i3/mylock
+#{{{
+if [ -f ~/.config/i3/mylock ]; then
+    mv --interactive ~/.config/i3/mylock ~/.config/i3/mylock.bak
+    echo "backing up current ~/.config as/i3/mylock ~/.config/i3/mylock.bak"
+fi
+ln --interactive i3/mylock ~/.config/i3/mylock
+#}}}
+
+#.config/i3status/config
+#{{{
+if [ -f ~/.config/i3status/config ]; then
+    mv --interactive ~/.config/i3status/config ~/.config/i3status/config.bak
+    echo "backing up current ~/.config as/i3status/config ~/.config/i3status/config.bak"
+fi
+ln --interactive i3/status/config ~/.config/i3status/config
+#}}}
+
+#make this sucker idiot-proof - remove the ability to accidentilly double run
+#sike, i'll still end up finding a way to wreck myself with this
+chmod 664 setup
 
 # vim: set foldmethod=marker:
