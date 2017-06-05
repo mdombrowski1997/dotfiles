@@ -192,3 +192,6 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_history_max
 #force prompt to write history after every command.
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+#start xbindkeys so that I can use my bindings
+xbindkeys

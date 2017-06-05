@@ -1,11 +1,9 @@
 #~/.bash_login - executed by bash when login shell starts
 
 #because apparently this file gets sourced alone now
-. .bashrc
-
-#tmux reminder - unnecessary
-#echo -e "\nTMUX Sessions"
-#tmux ls
+if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.profile"
+fi
 
 #print todo list
 #if [ -f ~/.todo ]; then

@@ -146,10 +146,10 @@ mode "resize"
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.}}}
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys{{{
         #bindsym Left resize shrink width 10 px or 10 ppt
@@ -176,8 +176,8 @@ bar
     tray_output none
     tray_padding 0
 
-    #hide bar unless urgent or $mod pressed - sike show always
-    mode dock
+    #hide bar unless urgent or $mod pressed
+    mode hide
     hidden_state hide
     modifier $mod
 
@@ -218,7 +218,8 @@ hide_edge_borders both
 #don't focus to chrome when I open it
 no_focus [class="(?i)chromium"]
 #force web into workspace 2
-assign [class="(?i)chromium"] $workspace2
+#assign [class="(?i)chromium"] $workspace2
+assign [class="(?i)icecat"] $workspace2
 #force weechat into workspace 4
 assign [class="(?i)weechat"] $workspace4
 #force music apps into workspace 5
@@ -228,16 +229,21 @@ assign [class="(?i)spotify"] $workspace5
 assign [class="(?i)mgba"] $workspace6
 
 #open terminal at startup
-exec i3-sensible-terminal
+#exec i3-sensible-terminal
 #open chrome at startup
-exec chromium-browser
+#exec chromium-browser
 
 #lock screen with win+p (pause)
 bindsym $mod+p exec "~/.config/i3/mylock"
+#sleep with win+z (zzz)
+#bindsym $mod+z exec i3-sensible-terminal -e "zzz; exit"
 #autolock after 45 untouched minutes
 exec_always xautolock -time 45 -locker "~/.config/i3/mylock"
 #i3lock -i "/usr/share/backgrounds/elementaryos-default"
 #~/.config/i3/mylock
+
+#open cmus with win+m (music)
+#bindsym $mod+m workspace $workspace5 && exec i3-sensible-terminal -e cmus
 
 #colors - currently at default
 #indicator irrelevant becuase I hide edge borders

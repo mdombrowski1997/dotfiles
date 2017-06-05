@@ -92,6 +92,8 @@
     "Y'all thought I wasn't in Visual Studio
     inoremap <F7> <esc>:!cl<cr>
     nnoremap <F7> :!cl<cr>
+    "source vimrc quickly
+    nnoremap VR :source ~/.vimrc<cr>
 "}}}
 
 """"""""""""""
@@ -110,9 +112,9 @@
     "actions for c++ source files
     augroup filetype_cpp
         autocmd!
-        "autocmd BufNewFile *.cpp so ~/Documents/Code/cpp/headertemplate
-
         "abbreviations for typo correction and such
+        iabbrev #i #include
+        iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
     augroup END
 "}}}
 

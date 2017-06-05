@@ -9,6 +9,12 @@
 alias up='cd ..'
 #go home
 alias home='cd ~'
+#quick movement to common dirs
+alias dof='cd ~/Documents/Code/bash/dotfiles'
+#quick go to cpp projects
+alias gcpp='cd ~/Documents/Code/cpp'
+#reset to default like I just logged in
+alias res='home && clear && cat .todo'
 #ls variations
 alias ls='ls --color=auto'
 alias  l='ls -CF'
@@ -78,6 +84,10 @@ alias cl='make all'
 alias zzz='systemctl suspend'
 #suspend and close terminal
 alias zx='systemctl suspend; exit'
+#quickly source bashrc
+alias src='. ~/.bashrc'
+#burn cd
+alias burn='wodim -eject -tao speed=2 dev=/dev/cdrom -v -data'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:
