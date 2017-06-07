@@ -1,0 +1,13 @@
+URxvt.letterSpace:      -1
+URxvt.scrollBar:        Fasle
+URxvt.background:       Black
+URxvt.foreground:       White
+URxvt.font:             9x15
+URxvt.title:            urxvt
+URxvt.borderless:       True
+URxvt.lineSpace:        0px
+URxvt.cursorBlink:      False
+URxvt.pointerBlank:     True
+URxvt.pointerColor:     Green
+URxvt.pointerColor2:    Black
+URxvt.pointerBlankDelay:4
