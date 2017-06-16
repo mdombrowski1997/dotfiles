@@ -5,13 +5,14 @@
 """"""""""""""""""""""""""""""""""""
 "{{{
     "set colors
-    colorscheme monokai
+    colorscheme default
     "change tabs to be 4 spaces
     set tabstop=4
     set softtabstop=4
     set expandtab
     "show line numbers
     set number
+    set relativenumber
     "show current line on
     set cursorline
     highlight CursorLine term=bold cterm=bold
@@ -115,6 +116,7 @@
         "abbreviations for typo correction and such
         iabbrev #i #include
         iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
+        iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
     augroup END
 "}}}
 

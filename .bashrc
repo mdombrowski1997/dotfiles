@@ -194,4 +194,7 @@ export HISTFILE=~/.bash_history_max
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 #start xbindkeys so that I can use my bindings
-xbindkeys
+#xbindkeys
+
+export VISUAL='/usr/bin/vim'
+export EDITOR='/usr/bin/vim'
