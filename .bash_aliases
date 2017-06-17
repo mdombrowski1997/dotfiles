@@ -21,6 +21,10 @@ alias  l='ls -CF'
 alias ll='ls -alhF'
 #grep coloring
 alias grep='grep --color=auto'
+#list git repos
+alias repos='find -name .git'
+#quick pi connection
+alias pi='ssh alarm@alarmpi'
 #--------------------------------------------------}}}
 
 #######################

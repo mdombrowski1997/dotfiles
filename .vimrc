@@ -12,7 +12,7 @@
     set expandtab
     "show line numbers
     set number
-    set relativenumber
+    "set relativenumber
     "show current line on
     set cursorline
     highlight CursorLine term=bold cterm=bold
