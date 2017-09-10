@@ -81,6 +81,8 @@
     inoremap <down> <nop>
     inoremap <left> <nop>
     inoremap <right> <nop>
+    "further killing of arrow keys to stop 'O' lag
+    set noesckeys
     "use <space> to turn off highlighting after search
     nnoremap <space> :nohl<cr>
     "quick indent
@@ -95,6 +97,14 @@
     nnoremap <F7> :!cl<cr>
     "source vimrc quickly
     nnoremap VR :source ~/.vimrc<cr>
+    "kill F1 help uselessness
+    noremap <F1> <nop>
+    inoremap <F1> <nop>
+    "line-by-line undo tree granularity
+    inoremap <cr> <C-g>u<cr>
+    "enter/exit hex mode
+    noremap <leader>hx :%!xxd<cr> :set binary<cr>
+    noremap <leader>nhx :%!xxd -r<cr>
 "}}}
 
 """"""""""""""

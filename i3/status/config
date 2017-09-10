@@ -19,11 +19,11 @@ order += "wireless _first_"
 #order += "ethernet _first_"
 order += "battery 0"
 #order += "load"
-order += "cpu_usage"
+#order += "cpu_usage"
 order += "tztime local"
 
 wireless _first_ {
-        format_up = "ip: %ip"
+        format_up = "%ip on {%essid}"
 #(%quality at %essid) %ip"
         format_down = "W: down"
 }

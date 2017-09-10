@@ -6,73 +6,73 @@
 #.bash_aliases
 #{{{
 if [ -f ~/.bash_aliases ]; then
-    mv --interactive ~/.bash_aliases ~/.bash_aliases.bak
+    mv ~/.bash_aliases ~/.bash_aliases.bak
     echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
 fi
-ln --interactive .bash_aliases ~/.bash_aliases
+ln .bash_aliases ~/.bash_aliases
 #}}}
 
 #.bash_login
 #{{{
 if [ -f ~/.bash_login ]; then
-    mv --interactive ~/.bash_login ~/.bash_login.bak
+    mv ~/.bash_login ~/.bash_login.bak
     echo "backing up current ~/.bash_login ~/.bash_login.bak"
 fi
-ln --interactive .bash_login ~/.bash_login
+ln .bash_login ~/.bash_login
 #}}}
 
 #.bashrc
 #{{{
 if [ -f ~/.bashrc ]; then
-    mv --interactive ~/.bashrc ~/.bashrc.bak
+    mv ~/.bashrc ~/.bashrc.bak
     echo "backing up current ~/.bashrc as ~/.bashrc.bak"
 fi
-ln --interactive .bashrc ~/.bashrc
+ln .bashrc ~/.bashrc
 #}}}
 
 #.tmux.conf
 #{{{
 if [ -f ~/.tmux.conf ]; then
-    mv --interactive ~/.tmux.conf ~/.tmux.conf.bak
+    mv ~/.tmux.conf ~/.tmux.conf.bak
     echo "backing up current ~/.tmux.c asonf ~/.tmux.conf.bak"
 fi
-ln --interactive .tmux.conf ~/.tmux.conf
+ln .tmux.conf ~/.tmux.conf
 #}}}
 
 #.vimrc
 #{{{
 if [ -f ~/.vimrc ]; then
-    mv --interactive ~/.vimrc ~/.vimrc.bak
+    mv ~/.vimrc ~/.vimrc.bak
     echo "backing up current ~/.vimrc  as~/.vimrc.bak"
 fi
-ln --interactive .vimrc ~/.vimrc
+ln .vimrc ~/.vimrc
 #}}}
 
 #.config/i3/config
 #{{{
 if [ -f ~/.config/i3/config ]; then
-    mv --interactive ~/.config/i3/config ~/.config/i3/config.bak
+    mv ~/.config/i3/config ~/.config/i3/config.bak
     echo "backing up current ~/.config as/i3/config ~/.config/i3/config.bak"
 fi
-ln --interactive i3/config ~/.config/i3/config
+ln i3/config ~/.config/i3/config
 #}}}
 
 #.config/i3/mylock
 #{{{
 if [ -f ~/.config/i3/mylock ]; then
-    mv --interactive ~/.config/i3/mylock ~/.config/i3/mylock.bak
+    mv ~/.config/i3/mylock ~/.config/i3/mylock.bak
     echo "backing up current ~/.config as/i3/mylock ~/.config/i3/mylock.bak"
 fi
-ln --interactive i3/mylock ~/.config/i3/mylock
+ln i3/mylock ~/.config/i3/mylock
 #}}}
 
 #.config/i3status/config
 #{{{
 if [ -f ~/.config/i3status/config ]; then
-    mv --interactive ~/.config/i3status/config ~/.config/i3status/config.bak
+    mv ~/.config/i3status/config ~/.config/i3status/config.bak
     echo "backing up current ~/.config as/i3status/config ~/.config/i3status/config.bak"
 fi
-ln --interactive i3/status/config ~/.config/i3status/config
+ln i3/status/config ~/.config/i3status/config
 #}}}
 
 #make this sucker idiot-proof - remove the ability to accidentilly double run

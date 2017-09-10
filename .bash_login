@@ -2,12 +2,18 @@
 
 #because apparently this file gets sourced alone now
 if [ -f "$HOME/.bashrc" ]; then
-    . "$HOME/.profile"
+    . "$HOME/.bashrc"
+fi
+
+#votd (more like VotLogin)
+if [ $TERM == 'linux' ]; then
+    echo ''
+    ~/code/garden/mem/mem
 fi
 
 #print todo list
-#if [ -f ~/.todo ]; then
+if [ -s ~/.todo ]; then
     echo "ToDo:"
     cat ~/.todo
     echo ""
-#endif
+fi
