@@ -15,13 +15,18 @@
     "set relativenumber
     "show current line on
     set cursorline
-    highlight CursorLine term=bold cterm=bold
+    "highlight CursorLine term=bold cterm=bold
     "redraw less often, faster maybe
     set lazyredraw
     "show matches to parentheses and such
     set showmatch
     "only show matches for 3 tenths of a sec
     set matchtime=3 
+    "dont use that harsh white line on folds
+    hi Folded ctermbg=0
+    hi Folded ctermfg=3
+    "Finally get some decent comment colors
+    hi Comment ctermfg=darkgreen
 "}}}
 
 """""""""
@@ -87,6 +92,8 @@
     nnoremap <space> :nohl<cr>
     "quick indent
     nnoremap <tab> I<tab><esc>
+    "quick un-indent
+    "nnoremap <shift><tab> I<BS><esc>
     "same but for blank line
     "nnoremap <return> o<esc>
     "I'm sick of bumping s and S, I never use them
@@ -124,7 +131,7 @@
     augroup filetype_cpp
         autocmd!
         "abbreviations for typo correction and such
-        iabbrev #i #include
+        iabbrev #i #include <><esc>l<bs>
         iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
         iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
     augroup END

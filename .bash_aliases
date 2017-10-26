@@ -1,4 +1,4 @@
-#~/.bash_aliases - personal aliases sourced by ~/.bashrc
+#~/.bash_aliases - personal aliases sourced by ~/.nashrc
 #for consistency, headers are wrapped in #,
 #and braces are on columns 52-54.
 
@@ -12,11 +12,12 @@ alias up='cd ..'
 #quick go to cpp projects
 #alias gcpp='cd ~/Documents/Code/cpp'
 #reset to default like I just logged in
-alias res='cd && clear && cat .todo'
+#alias res='cd && clear && cat .todo'
 #ls variations
 alias ls='ls --color=auto'
 alias  l='ls -CF'
 alias ll='ls -alhF'
+alias ld='ls -AlhFd'
 #grep coloring
 alias grep='grep --color=auto'
 #list git repos
@@ -48,6 +49,8 @@ alias rd='rm -r'
 #alias spotify='spotify &> /dev/null & echo ""'
 #use new location for tmux.conf
 alias tmux='tmux -f ~/.tmux/conf'
+#quick burn cd
+alias burn='cdrecord -v -pad speed=1 dev=/dev/sr0 -dao -swab *.wav'
 #--------------------------------------------------}}}
 
 ################
@@ -130,7 +133,12 @@ cur()
     fi
 }
 #quick liberty wifi connect
-alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd wlp3s0'
+alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
+#fix psmouse modules faster
+alias psm='sudo modprobe psmouse'
+alias psr='sudo modprobe -r psmouse'
+#no need to explain
+alias wifi-menu='sudo wifi-menu'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

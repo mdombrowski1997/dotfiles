@@ -95,16 +95,26 @@ bindsym $mod+Shift+space floating toggle
 #bindsym $mod+d focus child
 
 #define workspace vars
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+#terminal icon
+set $workspace1 "1: &#xf120;"
+#chrome icon
+set $workspace2 "2: &#xf268;"
+#pdf icon
+set $workspace3 "3: &#xf1c1;"
+#file(doc) icon
+set $workspace4 "4: &#xf15c;"
+#comment(chat) icon
+set $workspace5 "5: &#xf0e6;"
+#microchip icon
+set $workspace6 "6: &#xf2db;"
+#penguin icon
+set $workspace7 "7: &#xf17c;"
+#envelope(mail) icon
+set $workspace8 "8: &#xf0e0;"
+#game icon
+set $workspace9 "9: &#xf11b;"
+#music icon
+set $workspace10 "10: &#xf001;"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -164,10 +174,9 @@ mode "resize"
 bindsym $mod+r mode "resize"
 
 #ignoreall mode for complete i3 hotkey bypass
-mode " "
+mode "&#xf023;"
 {
-    bindsym $mod+Shift+q exec i3-nagbar -t warning -m "Nice Try!"
-
+    bindsym $mod+f fullscreen disable
     bindsym $mod+p exec "sudo systemctl suspend"
 }
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -245,7 +254,7 @@ for_window [title="OpenGL"] floating enable
 #exec chromium-browser
 
 #lock screen with win+p (pause)
-bindsym $mod+p mode " " ; exec "/home/oh/code/lock/check"
+bindsym $mod+p mode "&#xf023;" ; exec "/home/oh/code/lock/check"
 #bindsym $mod+z exec i3-sensible-terminal -e "zzz; exit"
 #autolock after 45 untouched minutes
 #exec_always xautolock -time 45 -locker "~/.config/i3/mylock"
@@ -269,6 +278,9 @@ client.background       #ffffff
 #prevent focus from changing when I bump mouse
 focus_follows_mouse no
 
+#get the mouse out of the way if needed
+#bindsym $mod+` exec "xdotool mousemove 1920 1080"
+
 #disable mouse warping, only for multiple screens
 #so pointless for now, but I wouldn't want it later
 mouse_warping none
@@ -285,7 +297,7 @@ bindsym $mod+Tab workspace back_and_forth
 focus_on_window_activation urgent
 
 #set bg
-exec_always "feh --no-fehbg --randomize --bg-fill '/home/oh/ktp/Backgrounds'"
+exec_always "feh --no-fehbg --bg-fill \"$(ls /home/oh/ktp/Backgrounds/1* | sort -R | head -1)\""
 
 #do stuff with the scratchpad eventually
 #it sounds useful if I can think of uses

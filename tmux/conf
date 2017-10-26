@@ -8,10 +8,10 @@
 #######################################
 #{{{
     #remap prefix key from Ctrl-b to Ctrl-a
-    #-g option makes global change
-    #I think line 3 here is needed for nested sessions, I'm following blindly here
     unbind-key C-b
+    #-g option makes global change
     set-option -g prefix C-a
+    #I think line 3 here is needed for nested sessions, I'm following blindly here
     bind-key C-a send-prefix
 
     #open new windows after current, not at end
@@ -35,9 +35,9 @@
     bind-key -n C-h resize-pane -L
     bind-key -n C-l resize-pane -R
 
-    #bind C-Shift-<vim movement> to change windows
-    bind-key -n M-H previous-window
-    bind-key -n M-L next-window
+    #bind <Alt>-Shift-(q/e) to change windows
+    bind-key -n M-q previous-window
+    bind-key -n M-e next-window
 
     #make vi key bindings in copy mode
     setw -g mode-keys vi
@@ -46,7 +46,7 @@
     #unbind-key -T copy-mode-vi Enter  ;       bind-key -T copy-mode-vi y copy-selection
 
     #get rid of this mouse nonsense
-    #set-option -g mouse off
+    set-option -g mouse off
 
     #ESC is killing my flow in vim
     #apparently tmux waits for esc seq
@@ -54,10 +54,10 @@
 
     #quick edit todo
     bind-key e new-window "vim ~/.todo"
-    #quick sett window (adjust)
-    bind-key a new-window -n "sett" "sett"
+    #quick sett window
+    bind-key s new-window -n "sett" "sett"
     #quick sleep
-    bind-key s run-shell "systemctl suspend"
+    #bind-key s run-shell "systemctl suspend"
     #quick lock
     #unbind-key l        ;       bind-key l detach-client \; run-shell "echo "EXIT""
 #}}}
@@ -93,7 +93,7 @@
 
     #quick sourcing of this file '~.tmux.conf' for quick setting edits
     #second phrase prints message at status line to let me know it worked
-    bind-key r source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
+    bind-key r source-file ~/.tmux/conf \; display-message "tmux.conf reloaded."
 #}}}
 
 # vim: set foldmethod=marker:
