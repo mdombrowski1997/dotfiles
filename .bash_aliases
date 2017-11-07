@@ -132,6 +132,23 @@ cur()
         fi
     fi
 }
+#seek and destroy process(es)
+hunt()
+{
+    #search and stop at this process
+    var=$(ps aux | grep $1 | awk 'BEGIN {} {if ($11=="grep") exit; else print $2} END {}')
+    #get rid of \n's
+    var=$(echo $var | tr -d "\012")
+    #confirmation
+    echo -n "Are you sure you want to kill process(es) $var labeled $1? [y/n]: "
+    read check
+    if [ $check == "y" ]; then
+        #kill desired process(es)
+        kill $var
+    else
+        echo "OK, aborting..."
+    fi
+}
 #quick liberty wifi connect
 alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
 #fix psmouse modules faster

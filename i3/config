@@ -233,20 +233,24 @@ new_window none
 hide_edge_borders both
 
 #don't focus to chrome when I open it
-no_focus [class="(?i)chromium"]
+#no_focus [class="(?i)chromium"]
 #force web into workspace 2
-#assign [class="(?i)chromium"] $workspace2
-assign [class="(?i)icecat"] $workspace2
-#force weechat into workspace 4
-assign [class="(?i)weechat"] $workspace4
-#force music apps into workspace 5
-assign [class="(?i)cmus"] $workspace5
-assign [class="(?i)spotify"] $workspace5
-#force gaming apps into workspace 6
-assign [class="(?i)mgba"] $workspace6
+assign [class="(?i)vivaldi-stable"] $workspace2
+#pdf stuff on workspace 3
+assign [class="(?i)evince"] $workspace3
+#office stuff on workspace 4
+assign [class="(?i)libreoffice"] $workspace4
+#force chat apps into workspace 5
+assign [class="(?i)weechat"] $workspace5
+#email on workspace 8
+assign [class="(?i)mutt"] $workspace8
+#force gaming apps into workspace 9
+assign [class="(?i)mgba"] $workspace9
+#force music apps into workspace 10
+assign [class="(?i)cmus"] $workspace10
 
 #make my project test windows float
-for_window [title="OpenGL"] floating enable
+#for_window [title="OpenGL"] floating enable
 
 #open terminal at startup
 #exec i3-sensible-terminal

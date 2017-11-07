@@ -7,7 +7,7 @@ fi
 
 #votd (more like VotLogin)
 if [ $TERM == 'linux' ]; then
-    echo ''
+    echo -ne '\n'
     ~/code/garden/mem/mem
 fi
 
@@ -15,5 +15,5 @@ fi
 if [ -s ~/.todo ]; then
     echo "ToDo:"
     cat ~/.todo
-    echo ""
+    echo -ne "\n"
 fi
