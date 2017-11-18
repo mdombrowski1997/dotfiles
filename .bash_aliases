@@ -144,7 +144,7 @@ hunt()
     read check
     if [ $check == "y" ]; then
         #kill desired process(es)
-        kill $var
+        sudo kill $var
     else
         echo "OK, aborting..."
     fi
