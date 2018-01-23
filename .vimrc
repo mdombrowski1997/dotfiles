@@ -112,6 +112,8 @@
     "enter/exit hex mode
     noremap <leader>hx :%!xxd<cr> :set binary<cr>
     noremap <leader>nhx :%!xxd -r<cr>
+    "make capital Y work like capital C and D
+    nnoremap Y y$
 "}}}
 
 """"""""""""""

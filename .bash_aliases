@@ -21,7 +21,7 @@ alias ld='ls -AlhFd'
 #grep coloring
 alias grep='grep --color=auto'
 #list git repos
-alias repos='find -name .git'
+alias repos='find ~ -name .git'
 #quick pi connection
 #alias pi='ssh alarm@alarmpi'
 #see last commit for git repo
@@ -51,6 +51,8 @@ alias rd='rm -r'
 alias tmux='tmux -f ~/.tmux/conf'
 #quick burn cd
 alias burn='cdrecord -v -pad speed=1 dev=/dev/sr0 -dao -swab *.wav'
+#roll dice quicker
+alias d='dice'
 #--------------------------------------------------}}}
 
 ################
@@ -81,7 +83,7 @@ alias vol='alsamixer'
 #quick check size of folder
 alias so='du -hs'
 #quick time/date output when no tmux
-alias t='echo -n "  " && date +%-I:%M\ %p'
+#alias t='echo -n "  " && date +%-I:%M\ %p'
 #check apps downloaded with apt-get
 #alias apps='zcat /var/log/apt/history.log.*.gz | cat - /var/log/apt/history.log | grep -Po '"'"'^Commandline: apt-get install (?!.*--reinstall)\K.*'"'"''
 #--------------------------------------------------}}}
@@ -111,6 +113,8 @@ alias s='. ~/.bashrc'
 alias a='tmux a'
 #burn cd
 #alias burn='wodim -eject -tao speed=2 dev=/dev/cdrom -v -data'
+#rip cd and lock button
+alias ripit='eject -i on; ripit'
 #change mouse cursor theme
 cur()
 {

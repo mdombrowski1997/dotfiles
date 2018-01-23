@@ -117,16 +117,26 @@ set $workspace9 "9: &#xf11b;"
 set $workspace10 "10: &#xf001;"
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Origin_of_Symmetry.jpg"
-bindsym $mod+2 workspace $workspace2; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Torches.jpg"
-bindsym $mod+3 workspace $workspace3; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1El_Pintor.jpg"
-bindsym $mod+4 workspace $workspace4; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Holy_Fire.jpg"
-bindsym $mod+5 workspace $workspace5; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1I\'m_Wide_Awake_It\'s_Morning.jpg"
-bindsym $mod+6 workspace $workspace6; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1OK_Computer.jpg"
-bindsym $mod+7 workspace $workspace7; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1You\'re_Dead.png"
-bindsym $mod+8 workspace $workspace8; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1In_The_Aeroplane_Over_The_Sea.jpg"
-bindsym $mod+9 workspace $workspace9; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1The_College_Dropout.jpg"
-bindsym $mod+0 workspace $workspace10; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Run_the_Jewels.jpg"
+bindsym $mod+1 workspace $workspace1
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Origin_of_Symmetry.jpg"
+bindsym $mod+2 workspace $workspace2
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Torches.jpg"
+bindsym $mod+3 workspace $workspace3
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1El_Pintor.jpg"
+bindsym $mod+4 workspace $workspace4
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Holy_Fire.jpg"
+bindsym $mod+5 workspace $workspace5
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1I\'m_Wide_Awake_It\'s_Morning.jpg"
+bindsym $mod+6 workspace $workspace6
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1OK_Computer.jpg"
+bindsym $mod+7 workspace $workspace7
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Chief_Whooligan.jpg"
+bindsym $mod+8 workspace $workspace8
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1In_The_Aeroplane_Over_The_Sea.jpg"
+bindsym $mod+9 workspace $workspace9
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1The_College_Dropout.jpg"
+bindsym $mod+0 workspace $workspace10
+#; exec "feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/1Run_the_Jewels.jpg"
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -304,7 +314,7 @@ bindsym $mod+Tab workspace back_and_forth
 focus_on_window_activation urgent
 
 #set bg
-#exec_always "feh --no-fehbg --bg-fill \"$(ls /home/oh/ktp/Backgrounds/1* | sort -R | head -1)\""
+exec_always "feh --no-fehbg --bg-fill \"$(ls /home/oh/ktp/Backgrounds/1* | sort -R | head -1)\""
 
 #do stuff with the scratchpad eventually
 #it sounds useful if I can think of uses
