@@ -73,21 +73,20 @@ bindsym $mod+Shift+l move right
 #bindsym $mod+h split h}}}
 
 # split in vertical orientation
-bindsym $mod+v split v
+# bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
-#who needs floating anyway{{{
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Escape floating toggle
 # change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle}}}
+bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
 #bindsym $mod+a focus parent
@@ -96,25 +95,25 @@ bindsym $mod+Shift+space floating toggle
 
 #define workspace vars
 #terminal icon
-set $workspace1 "1: &#xf120;"
+set $workspace1 "1: &#xf120; Tmux"
 #chrome icon
-set $workspace2 "2: &#xf268;"
+set $workspace2 "2: &#xf268; Web"
 #pdf icon
-set $workspace3 "3: &#xf1c1;"
+set $workspace3 "3: &#xf1c1; Pdf"
 #file(doc) icon
-set $workspace4 "4: &#xf15c;"
+set $workspace4 "4: &#xf15c; Office"
 #comment(chat) icon
-set $workspace5 "5: &#xf0e6;"
+set $workspace5 "5: &#xf0e6; Chat"
 #microchip icon
-set $workspace6 "6: &#xf2db;"
+set $workspace6 "6: &#xf030; View"
 #penguin icon
-set $workspace7 "7: &#xf17c;"
-#envelope(mail) icon
-set $workspace8 "8: &#xf0e0;"
-#game icon
-set $workspace9 "9: &#xf11b;"
+set $workspace7 "7: &#xf17c; Sys"
+#paint brush icon
+set $workspace8 "8: &#xf1fc; Art"
+#calc icon
+set $workspace9 "9: &#xf1ec; Calc"
 #music icon
-set $workspace10 "10: &#xf001;"
+set $workspace10 "10: &#xf001; Music"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -154,8 +153,8 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
+# exit i3 (logs you out of your X session) - changed to ESC because I would bump
+bindsym $mod+Shift+Escape exit
 
 # resize window (you can also use the mouse for that)
 mode "resize"
@@ -198,8 +197,10 @@ bar
 
     #set output at RH side of bar
     #force my config
-    status_command i3status -c ~/.config/i3/status/config
-    #separator_symbol "|" - irrelevant when not using #staus_command i3status - JSON thing in /etc/i3 #suppress tray app icons
+    status_command exec ~/.config/i3/status/mine
+    #status_command i3status -c ~/.config/i3/status/mine
+    separator_symbol "|"
+    #suppress tray app icons
     tray_output none
     tray_padding 0
 
@@ -219,28 +220,44 @@ bar
     #if workspaces named "#:name", '#:' will be removed
     strip_workspace_numbers no
 
+    #{{{
     #colors - same HTML style as above
-    #colors     DEFAULTS
-    #{
-    #    background #000000
-    #    statusline #ffffff
-    #    separator #666666
-    #
-    #    focused_background
-    #    focused_statusline
-    #    focused_separator
-    #    focused_workspace  #4c7899 #285577 #ffffff
-    #    active_workspace   #333333 #5f676a #ffffff
-    #    inactive_workspace #333333 #222222 #888888
-    #    urgent_workspace   #2f343a #900000 #ffffff
-    #    binding_mode       #2f343a #900000 #ffffff
-    #}
+    #<Class>    <Border>    <Background>    <Text>
+    colors
+    {
+        background #000000
+        statusline #FFFFFF
+        separator #000000
+    
+        focused_workspace  #CCCCCC #CCCCCC #000000
+        active_workspace   #CCCCCC #CCCCCC #000000
+        inactive_workspace #111111 #000000 #444444
+        urgent_workspace   #111111 #440000 #FFFFFF
+        binding_mode       #111111 #440000 #FFFFFF
+    }
+    #}}}
 }
 
 #no window borders
 new_window none
 #no edge borders
 hide_edge_borders both
+
+#auto launch bindings
+bindsym $mod+F1 workspace $workspace1 ; exec "i3-sensible-terminal -e /home/oh/.config/i3/F1"
+bindsym $mod+F2 workspace $workspace2 ; exec "vivaldi-stable"
+bindsym $mod+F3 workspace $workspace3 ; exec "evince"
+bindsym $mod+F4 workspace $workspace4 ; exec "libreoffice"
+bindsym $mod+F5 workspace $workspace5 ; exec "discord"
+bindsym $mod+F6 workspace $workspace6 ; exec "eog"
+bindsym $mod+F7 workspace $workspace7 ; exec "i3-sensible-terminal -e htop"
+bindsym $mod+F8 workspace $workspace8 ; exec "gimp"
+bindsym $mod+F9 workspace $workspace9 ; exec "i3-sensible-terminal -e R"
+bindsym $mod+F10 workspace $workspace10 ; exec "i3-sensible-terminal -e cmus" ; workspace back_and_forth
+#scrot with prntscrn
+bindsym Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z -e 'eog $f'"
+# in case I want the bar
+bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z -e 'eog $f'"
 
 #don't focus to chrome when I open it
 #no_focus [class="(?i)chromium"]
@@ -251,19 +268,11 @@ assign [class="(?i)evince"] $workspace3
 #office stuff on workspace 4
 assign [class="(?i)libreoffice"] $workspace4
 #force chat apps into workspace 5
-assign [class="(?i)weechat"] $workspace5
-#gimp and eog on workspace 7
-assign [class="(?i)gimp"] $workspace7
-assign [class="(?i)eog"] $workspace7
-#email on workspace 8
-assign [class="(?i)mutt"] $workspace8
-#force gaming apps into workspace 9
-assign [class="(?i)mgba"] $workspace9
-#force music apps into workspace 10
-assign [class="(?i)cmus"] $workspace10
-
-#make my project test windows float
-#for_window [title="OpenGL"] floating enable
+assign [class="(?i)discord"] $workspace5
+#eog on workspace 6
+assign [class="(?i)eog"] $workspace6
+#gimp on workspace 8
+assign [class="(?i)gimp"] $workspace8
 
 #open terminal at startup
 #exec i3-sensible-terminal
@@ -278,17 +287,14 @@ bindsym $mod+p mode "&#xf023;" ; exec "/home/oh/code/lock/check"
 #i3lock -i "/usr/share/backgrounds/elementaryos-default"
 #~/.config/i3/mylock
 
-#open cmus with win+m (music)
-#bindsym $mod+m workspace $workspace5 && exec i3-sensible-terminal -e cmus
-
 #colors - currently at default
 #indicator irrelevant becuase I hide edge borders
 #class                  border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.focused          #CCCCCC #CCCCCC #000000 #2e9ef4   #285577
+client.focused_inactive #CCCCCC #CCCCCC #000000 #2e9ef4   #285577
+client.unfocused        #111111 #000000 #444444 #292d2e   #222222
+client.urgent           #111111 #440000 #FFFFFF #900000   #900000
+client.placeholder      #111111 #440000 #FFFFFF #000000   #0c0c0c
 
 client.background       #ffffff
 
@@ -318,7 +324,29 @@ exec_always "feh --no-fehbg --bg-fill \"$(ls /home/oh/ktp/Backgrounds/1* | sort 
 
 #do stuff with the scratchpad eventually
 #it sounds useful if I can think of uses
-#move scratchpad - moves focused to scratchpad
-#scratchpad show - show first/next scratchpad window
+#- moves focused to scratchpad
+#bindsym $mod+Escape move scratchpad 
+#- show first/next scratchpad window
+#bindsym $mod+space scratchpad show  
+
+#sticky means it ignores workspaces and "sticks" to screen
+bindsym $mod+space sticky toggle  
+#to stick floating window in top+left corner
+bindsym $mod+bracketleft move absolute position 0 0 ; resize set 256 384
+#to stick floating window in top+right corner
+bindsym $mod+bracketright move absolute position 1106 0 ; resize set 256 384
+
+#cmus bindings with Mod(WIN) controls when not focused
+#controls
+bindsym $mod+z exec "cmus-remote --prev"
+# to refresh i3status if I use it in the future -- && pkill -USR1 i3status"
+bindsym $mod+x exec "cmus-remote --play"
+bindsym $mod+c exec "cmus-remote --pause"
+bindsym $mod+v exec "cmus-remote --stop"
+bindsym $mod+b exec "cmus-remote --next"
+#volume
+bindsym $mod+minus exec "cmus-remote --volume -10%"
+bindsym $mod+plus exec "cmus-remote --volume +10%"
+#script for now playing in i3_status is above in that section
 
 # vim: set foldmethod=marker:

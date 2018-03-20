@@ -170,6 +170,10 @@ LS_COLORS=$LS_COLORS:'di=01;35:' ; export LS_COLORS
 
 #disable this Ctrl-S, Ctrl-Q nonsense
 stty -ixon
+#Vi Mode
+set -o vi
+#but keep the glorious Alt-period combo
+bind '"\e."':yank-last-arg
 
 #make history unlimited
 #set history formay

@@ -1,5 +1,8 @@
 "~/.vimrc - sourced when vim starts, vim personalizations
 
+" ignore Vi compat
+set nocompatible
+
 """"""""""""""""""""""""""""""""""""
 "Colors, Personalizations, and Such"
 """"""""""""""""""""""""""""""""""""
@@ -34,7 +37,7 @@
 """""""""
 "{{{
     "enable syntax processing
-    filetype on
+    filetype plugin on
     syntax enable
     set modeline
     "enable folding
@@ -64,6 +67,8 @@
 "{{{
     "allow aliases in vim!
     set shellcmdflag=-ic
+    "stop this comment continue nonsense
+    set formatoptions-=cro
 "}}}
 
 """"""""""
@@ -114,29 +119,47 @@
     noremap <leader>nhx :%!xxd -r<cr>
     "make capital Y work like capital C and D
     nnoremap Y y$
+    "for easy pane movement
+    noremap <M-u> <C-w>h
+    noremap <M-i> <C-w>j
+    noremap <M-o> <C-w>k
+    noremap <M-p> <C-w>l
 "}}}
 
 """"""""""""""
 "Autocommands"
 """"""""""""""
 "{{{
-    "General actions for all files
-    augroup general_cmds
-        autocmd!
-        "change foldmethod during insertion to prevention spontaneous unfolding
-        autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-        "change back when leaving insert
-        autocmd InsertLeave, WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-    augroup END
-
-    "actions for c++ source files
-    augroup filetype_cpp
-        autocmd!
-        "abbreviations for typo correction and such
-        iabbrev #i #include <><esc>l<bs>
-        iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-        iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-    augroup END
+    ""General actions for all files
+    "augroup general_cmds
+        "autocmd!
+        ""change foldmethod during insertion to prevention spontaneous unfolding
+        "autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+        ""change back when leaving insert
+        "autocmd InsertLeave, WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+    "augroup END
+"
+    ""actions for c++ source files
+    "augroup filetype_cpp
+        "autocmd!
+        ""abbreviations for typo correction and such
+        "iabbrev #i #include <><esc>l<bs>
+        "iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
+        "iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
+    "augroup END
+    ""actions for c source files
+    "augroup filetype_c
+        "autocmd!
+        ""abbreviations for typo correction and such
+        "iabbrev #i #include <><esc>l<bs>
+        "iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
+        "iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
+    "augroup END
+    ""actions for LaTeX
+    "augroup filetype_c
+        "autocmd!
+        "inoremap <leader>m $$<esc>i
+    "augroup END
 "}}}
 
 " vim: set foldmethod=marker:

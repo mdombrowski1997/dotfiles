@@ -110,7 +110,7 @@ alias zx='sudo systemctl suspend; exit'
 #quickly source bashrc
 alias s='. ~/.bashrc'
 #too much typing not to do this
-alias a='tmux a'
+alias a='tmux a || tmux'
 #burn cd
 #alias burn='wodim -eject -tao speed=2 dev=/dev/cdrom -v -data'
 #rip cd and lock button
@@ -140,7 +140,7 @@ cur()
 hunt()
 {
     #search and stop at this process
-    var=$(ps aux | grep $1 | awk 'BEGIN {} {if ($11=="grep") exit; else print $2} END {}')
+    var=$(ps aux | grep $1 | awk 'BEGIN {} {print $2} END {}')
     #get rid of \n's
     var=$(echo $var | tr -d "\012")
     #confirmation
@@ -156,10 +156,43 @@ hunt()
 #quick liberty wifi connect
 alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
 #fix psmouse modules faster
-alias psm='sudo modprobe psmouse'
-alias psr='sudo modprobe -r psmouse'
+#alias psm='sudo modprobe psmouse'
+#alias psr='sudo modprobe -r psmouse'
 #no need to explain
 alias wifi-menu='sudo wifi-menu'
+#quick on/off of sshd module
+alias startsshd='systemctl start sshd.socket'
+alias stopsshd='systemctl stop sshd.socket'
+#alert when done something
+alias beep='echo -ne "\a" && sleep 0.2 && echo -ne "\a" && sleep 0.2 && echo -ne "\a"'
+#for source file templates
+new()
+{
+    #too few
+    if [ "$#" == 0 ]; then
+        printf "new [descriptor]\n\tdescriptor = { html | rng | sdl }\n" 
+    fi
+
+    #normal use
+    if [ "$#" == 1 ]; then
+        #assignment
+        if [ $1 == "html" ]; then which=ex.html; fi
+        if [ $1 == "rng" ]; then which=rng.c; fi
+        if [ $1 == "sdl" ]; then which=sdl.c; fi
+
+        #actual copying
+        cp /home/oh/code/utils/templates/$which ./
+    fi
+
+    #too many
+    if [ "$#" -gt 1 ]; then
+        printf "new [descriptor]\n\tdescriptor = { html | rng | sdl }\n" 
+    fi
+}
+#basic stopwatch on ^C
+alias swatch='time while [ true ]; do sleep 1; done'
+#I'm a dingbat, this doesn't need to be in /bin
+alias texwatch='/home/oh/code/utils/texwatch'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:
