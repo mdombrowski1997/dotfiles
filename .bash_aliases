@@ -155,6 +155,8 @@ hunt()
 }
 #quick liberty wifi connect
 alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
+#quick home wifi connect
+alias homecon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp3s0'
 #fix psmouse modules faster
 #alias psm='sudo modprobe psmouse'
 #alias psr='sudo modprobe -r psmouse'
@@ -170,7 +172,7 @@ new()
 {
     #too few
     if [ "$#" == 0 ]; then
-        printf "new [descriptor]\n\tdescriptor = { html | rng | sdl }\n" 
+        printf "new [descriptor]\n\tdescriptor = { html | rng | sdl | tex }\n" 
     fi
 
     #normal use
@@ -179,6 +181,7 @@ new()
         if [ $1 == "html" ]; then which=ex.html; fi
         if [ $1 == "rng" ]; then which=rng.c; fi
         if [ $1 == "sdl" ]; then which=sdl.c; fi
+        if [ $1 == "tex" ]; then which=ex.tex; fi
 
         #actual copying
         cp /home/oh/code/utils/templates/$which ./

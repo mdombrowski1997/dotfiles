@@ -269,10 +269,15 @@ assign [class="(?i)evince"] $workspace3
 assign [class="(?i)libreoffice"] $workspace4
 #force chat apps into workspace 5
 assign [class="(?i)discord"] $workspace5
-#eog on workspace 6
+#viewer on workspace 6
 assign [class="(?i)eog"] $workspace6
-#gimp on workspace 8
+#art on workspace 8
 assign [class="(?i)gimp"] $workspace8
+#math on workspace 9
+assign [class="(?i)octave"] $workspace8
+#music on workspace 10
+assign [class="(?i)vlc"] $workspace8
+assign [class="(?i)audacity"] $workspace8
 
 #open terminal at startup
 #exec i3-sensible-terminal
@@ -332,9 +337,9 @@ exec_always "feh --no-fehbg --bg-fill \"$(ls /home/oh/ktp/Backgrounds/1* | sort 
 #sticky means it ignores workspaces and "sticks" to screen
 bindsym $mod+space sticky toggle  
 #to stick floating window in top+left corner
-bindsym $mod+bracketleft move absolute position 0 0 ; resize set 256 384
+bindsym $mod+bracketleft move absolute position 0 0 ; resize set 456 384
 #to stick floating window in top+right corner
-bindsym $mod+bracketright move absolute position 1106 0 ; resize set 256 384
+bindsym $mod+bracketright move absolute position 870 0 ; resize set 500 384
 
 #cmus bindings with Mod(WIN) controls when not focused
 #controls
