@@ -51,8 +51,6 @@ alias rd='rm -r'
 alias tmux='tmux -f ~/.tmux/conf'
 #quick burn cd
 alias burn='cdrecord -v -pad speed=1 dev=/dev/sr0 -dao -swab *.wav'
-#roll dice quicker
-alias d='dice'
 #--------------------------------------------------}}}
 
 ################
@@ -120,7 +118,7 @@ cur()
 {
     if [ "$#" == 0 ]; then
         theme=$(cat ~/.icons/default/index.theme | grep '=' | sed -r 's/Inherits=(\S+).*/\1/')
-        echo "   Cursor Theme is currently: $theme"
+        echo "Cursor Theme is currently: $theme"
     fi
 
     if [ "$#" == 1 ]; then
@@ -132,27 +130,28 @@ cur()
             ln -s ~/.icons/$1/cursors ~/.icons/default/cursors
 
         else
-            echo -e "    Cursor Theme: /'$1/' not found.\n    Ensure that the desired theme is correctly installed and check case."
+            echo -e "Error: Cursor Theme: /'$1/' not found.\n    Ensure that the desired theme is correctly installed and check case."
         fi
     fi
 }
 #seek and destroy process(es)
-hunt()
-{
-    #search and stop at this process
-    var=$(ps aux | grep $1 | awk 'BEGIN {} {print $2} END {}')
-    #get rid of \n's
-    var=$(echo $var | tr -d "\012")
-    #confirmation
-    echo -n "Are you sure you want to kill process(es) $var labeled $1? [y/n]: "
-    read check
-    if [ $check == "y" ]; then
-        #kill desired process(es)
-        sudo kill $var
-    else
-        echo "OK, aborting..."
-    fi
-}
+#UM - BUT...PKILL THO
+#hunt()
+#{
+    ##search and stop at this process
+    #var=$(ps aux | grep $1 | awk 'BEGIN {} {print $2} END {}')
+    ##get rid of \n's
+    #var=$(echo $var | tr -d "\012")
+    ##confirmation
+    #echo -n "Are you sure you want to kill process(es) $var labeled $1? [y/n]: "
+    #read check
+    #if [ $check == "y" ]; then
+        ##kill desired process(es)
+        #sudo kill $var
+    #else
+        #echo "OK, aborting..."
+    #fi
+#}
 #quick liberty wifi connect
 alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
 #quick home wifi connect
@@ -195,7 +194,9 @@ new()
 #basic stopwatch on ^C
 alias swatch='time while [ true ]; do sleep 1; done'
 #I'm a dingbat, this doesn't need to be in /bin
-alias texwatch='/home/oh/code/utils/texwatch'
+alias tw='/home/oh/code/utils/texwatch'
+#gotta go fast
+alias v='vim'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

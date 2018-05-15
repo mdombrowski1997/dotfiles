@@ -17,3 +17,12 @@ if [ -s ~/.todo ]; then
     cat ~/.todo
     echo -ne "\n"
 fi
+
+if [ $TERM == 'linux' ]; then
+    if [ -w /dev/bus/usb/001/003 ]; then
+        true
+    else
+        #make fprint reader useable
+        sudo chmod 666 /dev/bus/usb/001/003
+    fi
+fi
