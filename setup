@@ -1,78 +1,92 @@
 #!/bin/bash
 #dotfiles/setup - checks for existence of dotfiles from repo in users home directory,
-#                creates hard links to repo files, backs up existing files as ~/.name.bak
+#                creates symlinks to repo files, backs up existing files as ~/.name.bak
 
+#set dotfiles folder
+dotfiles='/home/oh/code/dotfiles'
+
+#.Xresources
+#{{{
+read -p 'link ~/.Xresources? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.Xresources ]; then
+        mv ~/.Xresources ~/.Xresources.bak
+        echo "backing up current ~/.Xresources ~/.Xresources.bak"
+    fi
+    ln -s $dotfiles/.Xresources ~/.Xresources
+fi
+#}}}
 
 #.bash_aliases
 #{{{
-if [ -f ~/.bash_aliases ]; then
-    mv ~/.bash_aliases ~/.bash_aliases.bak
-    echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
+read -p 'link ~/.bash_aliases? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.bash_aliases ]; then
+        mv ~/.bash_aliases ~/.bash_aliases.bak
+        echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
+    fi
+    ln -s $dotfiles/.bash_aliases ~/.bash_aliases
 fi
-ln .bash_aliases ~/.bash_aliases
 #}}}
 
 #.bash_login
 #{{{
-if [ -f ~/.bash_login ]; then
-    mv ~/.bash_login ~/.bash_login.bak
-    echo "backing up current ~/.bash_login ~/.bash_login.bak"
+read -p 'link ~/.bash_login? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.bash_login ]; then
+        mv ~/.bash_login ~/.bash_login.bak
+        echo "backing up current ~/.bash_login ~/.bash_login.bak"
+    fi
+    ln -s $dotfiles/.bash_login ~/.bash_login
 fi
-ln .bash_login ~/.bash_login
 #}}}
 
 #.bashrc
 #{{{
-if [ -f ~/.bashrc ]; then
-    mv ~/.bashrc ~/.bashrc.bak
-    echo "backing up current ~/.bashrc as ~/.bashrc.bak"
+read -p 'link ~/.bashrc? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.bashrc ]; then
+        mv ~/.bashrc ~/.bashrc.bak
+        echo "backing up current ~/.bashrc as ~/.bashrc.bak"
+    fi
+    ln -s $dotfiles/.bashrc ~/.bashrc
 fi
-ln .bashrc ~/.bashrc
 #}}}
 
-#.tmux.conf
+#.tmux/
 #{{{
-if [ -f ~/.tmux.conf ]; then
-    mv ~/.tmux.conf ~/.tmux.conf.bak
-    echo "backing up current ~/.tmux.c asonf ~/.tmux.conf.bak"
+read -p 'link ~/.tmux/? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.tmux.conf ]; then
+        mv ~/.tmux/ ~/.tmux.bak/
+        echo "backing up current ~/.tmux/ as ~/.tmux.bak/"
+    fi
+    ln -s $dotfiles/.tmux ~/.tmux
 fi
-ln .tmux.conf ~/.tmux.conf
 #}}}
 
 #.vimrc
 #{{{
-if [ -f ~/.vimrc ]; then
-    mv ~/.vimrc ~/.vimrc.bak
-    echo "backing up current ~/.vimrc  as~/.vimrc.bak"
+read -p 'link ~/.vimrc? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.vimrc ]; then
+        mv ~/.vimrc ~/.vimrc.bak
+        echo "backing up current ~/.vimrc as ~/.vimrc.bak"
+    fi
+    ln -s $dotfiles/.vimrc ~/.vimrc
 fi
-ln .vimrc ~/.vimrc
 #}}}
 
-#.config/i3/config
+#.config/i3/
 #{{{
-if [ -f ~/.config/i3/config ]; then
-    mv ~/.config/i3/config ~/.config/i3/config.bak
-    echo "backing up current ~/.config as/i3/config ~/.config/i3/config.bak"
+read -p 'link ~/.config/.i3/? [Y/n] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.config/i3/config ]; then
+        mv ~/.config/i3/ ~/.config/i3.bak/
+        echo "backing up current ~/.config/i3/ as ~/.config/i3.bak/"
+    fi
+    ln -s $dotfiles/i3 ~/.config/i3
 fi
-ln i3/config ~/.config/i3/config
-#}}}
-
-#.config/i3/mylock
-#{{{
-if [ -f ~/.config/i3/mylock ]; then
-    mv ~/.config/i3/mylock ~/.config/i3/mylock.bak
-    echo "backing up current ~/.config as/i3/mylock ~/.config/i3/mylock.bak"
-fi
-ln i3/mylock ~/.config/i3/mylock
-#}}}
-
-#.config/i3status/config
-#{{{
-if [ -f ~/.config/i3status/config ]; then
-    mv ~/.config/i3status/config ~/.config/i3status/config.bak
-    echo "backing up current ~/.config as/i3status/config ~/.config/i3status/config.bak"
-fi
-ln i3/status/config ~/.config/i3status/config
 #}}}
 
 #make this sucker idiot-proof - remove the ability to accidentilly double run

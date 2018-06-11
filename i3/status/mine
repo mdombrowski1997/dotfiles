@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#{{{color vars
+Black='\033[0;30m'
+Dark_Gray='\033[1;30m'
+Red='\033[0;31m'
+Light_Red='\033[1;31m'
+Green='\033[0;32m'
+Light_Green='\033[1;32m'
+Brown_Orange='\033[0;33m'
+Yellow='\033[1;33m'
+Blue='\033[0;34m'
+Light_Blue='\033[1;34m'
+Purple='\033[0;35m'
+Light_Purple='\033[1;35m'
+Cyan='\033[0;36m'
+Light_Cyan='\033[1;36m'
+Light_Gray='\033[0;37m'
+White='\033[1;37m'
+#}}}
+
+# Send the header so that i3bar knows we want to use JSON:
+echo '{ "version": 4 }'
+# Begin the endless array.
+echo '['
+# We send an empty first array of blocks to make the loop simpler:
+echo '[]'
+# Now send blocks with information forever:
+while :
+do
+    artist_name=$(cmus-remote -C status | grep "tag artist" | cut -d' ' -f 3- | head -c15)
+    song_name=$(cmus-remote -C status | grep file | cut -d'/' -f 7 | cut -d'.' -f 1 | head -c20)
+    if [ -z "$song_name" ]; then song_name=$(cmus-remote -C status | grep file | cut -d'/' -f 6 | cut -d'.' -f 1 | head -c20); fi
+    if [ -n "$artist_name" -a -n "$song_name" ]; then artist_name="$artist_name : "; fi
+    volume=$(cmus-remote -C status | grep vol_left | cut -d' ' -f 3)
+    ip=$(~/.config/i3/status/ip)
+    network=$(~/.config/i3/status/network)
+    if [ -z "$network" ]; then
+        wireless="No network";
+        net_color="#222222";
+    else
+        wireless="$ip on {$network}"
+        net_color="#FF00FF";
+    fi
+    ac=$(~/.config/i3/status/ac_check)
+    bat=$(~/.config/i3/status/bat)
+    if [ $bat -ge 70 ]; then
+        bat_color="#00FF00";
+    elif [ $bat -le 30 ]; then
+        bat_color="#FF0000";
+    else
+        bat_color="#FFFFFF";
+    fi
+    datetime=$(~/.config/i3/status/date)
+
+    echo -n ",[{\"color\":\"#FFFFFF\", \"full_text\":\"$artist_name$song_name\"}" || exit 1
+    if [ -n "$artist_name" -o -n "$song_name" ]; then
+        echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1;
+        echo -n ",{\"color\":\"#FFFFFF\", \"full_text\":\"vol: $volume%\"}" || exit 1
+        echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1;
+    fi
+    echo -n ",{\"color\":\"$net_color\", \"full_text\":\"$wireless\"}" || exit 1
+    echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1
+    echo -n ",{\"color\":\"$bat_color\", \"full_text\":\"$ac $bat%\"}" || exit 1
+    echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1
+    echo ",{\"color\":\"#0088FF\", \"full_text\":\"$datetime\"}]" || exit 1
+    #sleep 10
+done
+
+# vim :set foldmethod=marker:

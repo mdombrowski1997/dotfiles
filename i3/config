@@ -163,7 +163,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session) - changed to ESC because I would bump
-bindsym $mod+Shift+Escape exit
+bindsym $mod+Shift+Escape exec "echo 'STOPD' > /tmp/popupd" ; exit
 
 # resize window (you can also use the mouse for that)
 mode "resize"
@@ -271,10 +271,7 @@ bindsym Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z"
 #bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z -e 'eog $f'"
 bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z"
 
-#don't focus to chrome when I open it
-#no_focus [class="(?i)chromium"]
 #force web into workspace 2
-#assign [class="(?i)vivaldi-stable"] $workspace2
 assign [class="(?i)firefox-developer-edition"] $workspace2
 #pdf stuff on workspace 3
 assign [class="(?i)evince"] $workspace3
@@ -356,6 +353,9 @@ bindsym $mod+bracketleft move absolute position 0 0 ; resize set 456 384
 #to stick floating window in top+right corner
 bindsym $mod+bracketright move absolute position 870 0 ; resize set 500 384
 
+#specific placement of "popupd" windows
+for_window [title="popupd"] floating enable, move absolute position 16 8, sticky enable
+
 #cmus bindings with Mod(WIN) controls when not focused
 #controls
 bindsym $mod+z exec "cmus-remote --prev"
@@ -365,8 +365,10 @@ bindsym $mod+c exec "cmus-remote --pause"
 bindsym $mod+v exec "cmus-remote --stop"
 bindsym $mod+b exec "cmus-remote --next"
 #volume
-bindsym $mod+minus exec "cmus-remote --volume -10%"
-bindsym $mod+plus exec "cmus-remote --volume +10%"
+bindsym $mod+minus exec "cmus-remote --volume -2%"
+bindsym $mod+plus exec "cmus-remote --volume +2%"
+#trivial status info with popupd
+bindsym $mod+s exec "cmus-remote -C status | grep 'file' | rev | cut -d'/' -f1 | rev | cut -d'.' -f1 | head -c35 > /tmp/popupd"
 #script for now playing in i3_status is above in that section
 
 # vim: set foldmethod=marker:

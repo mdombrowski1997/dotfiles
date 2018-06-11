@@ -1,0 +1,9 @@
+#!/bin/bash
+
+i3status -c ~/.config/i3/status/config | while :
+do
+    read line
+    artist_name=$(cmus-remote -C status | grep artist | cut -d' ' -f 3-)
+    song_name=$(cmus-remote -C status | grep title | cut -d' ' -f 3-)
+    echo "$artist_name : $song_name | $line" || exit 1
+done

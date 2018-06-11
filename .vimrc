@@ -124,6 +124,8 @@ set nocompatible
     noremap <M-i> <C-w>j
     noremap <M-o> <C-w>k
     noremap <M-p> <C-w>l
+    "Tab for autocomplete
+    inoremap <leader><Tab> <C-N>
 "}}}
 
 """"""""""""""

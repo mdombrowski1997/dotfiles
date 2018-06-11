@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ac_check=$(cat /sys/class/power_supply/AC/online)
+
+if [ $ac_check = '1' ]; then
+    echo -n 'CHR:'
+else
+    echo -n 'BAT:'
+fi

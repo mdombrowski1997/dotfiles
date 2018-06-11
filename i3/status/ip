@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ip=$(ip -4 -o addr show | grep wlp3s0 | sed 's/^.*inet //' | sed 's:/.*$::')
+
+echo -n $ip

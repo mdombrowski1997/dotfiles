@@ -1,0 +1,5 @@
+#!/bin/bash
+
+date=$(date | cut -d' ' -f 1-5 | cut -d':' -f 1-2)
+
+echo -n $date
