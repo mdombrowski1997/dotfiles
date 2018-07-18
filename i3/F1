@@ -1,3 +1,5 @@
 #!/bin/bash
 
-tmux attach || tmux -f ~/.tmux/conf
+main_session='work'
+
+tmux attach-session -t $main_session || tmux -f ~/.tmux/conf new-session -s $main_session
