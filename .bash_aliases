@@ -51,6 +51,8 @@ alias rd='rm -r'
 alias tmux='tmux -f ~/.tmux/conf'
 #quick burn cd
 alias burn='cdrecord -v -pad speed=1 dev=/dev/sr0 -dao -swab *.wav'
+#quiet the gdb startup messages
+alias gdb='gdb -q'
 #--------------------------------------------------}}}
 
 ################
@@ -153,9 +155,9 @@ cur()
     #fi
 #}
 #quick liberty wifi connect
-alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0'
+alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0 -q'
 #quick home wifi connect
-alias homecon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp3s0'
+alias homecon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp3s0 -q'
 #fix psmouse modules faster
 #alias psm='sudo modprobe psmouse'
 #alias psr='sudo modprobe -r psmouse'
@@ -197,6 +199,29 @@ alias swatch='time while [ true ]; do sleep 1; done'
 alias tw='/home/oh/code/utils/texwatch'
 #gotta go fast
 alias v='vim'
+#easy gpg usage
+alias encrypt='gpg2 --encrypt'
+alias decrypt='gpg2 --decrypt'
+#single grep decrypt so I don't print excess
+gpgrep() {
+    if [ "$#" -ne 2 ]; then
+        printf "Hey, make sure you pass a file and a pattern\n"
+    fi
+    #decrypt file and find case insesitive match with the password below
+    gpg2 --decrypt $1 | grep -e $2 -A 1 -i
+}
+#now easy combo
+gpedit() {
+    if [ "$#" -ne 1 ]; then
+        printf "Hey, make sure you pass a file\n"
+    fi
+    gpg2 --decrypt $1 > tmp && \
+    vim tmp && \
+    gpg2 --output $1 --encrypt tmp && \
+    rm tmp
+}
+#easy access to aws
+alias chief='ssh -i ~/code/aws/chief_key.pem -p 22 ubuntu@35.174.114.197'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:
