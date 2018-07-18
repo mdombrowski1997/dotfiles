@@ -29,18 +29,20 @@ let g:tmux_navigator_disable_when_zoomed = 1
     set tabstop=4
     set softtabstop=4
     set expandtab
+    "for >>/<< operators
+    set shiftwidth=4
     "show line numbers
     set number
-    "set relativenumber
+    set relativenumber
     "show current line on
     set cursorline
     "highlight CursorLine term=bold cterm=bold
     "redraw less often, faster maybe
     set lazyredraw
     "show matches to parentheses and such
-    set showmatch
+    "set showmatch
     "only show matches for 3 tenths of a sec
-    set matchtime=3 
+    "set matchtime=3
     "dont use that harsh white line on folds
     hi Folded ctermbg=0
     hi Folded ctermfg=3
@@ -82,21 +84,25 @@ let g:tmux_navigator_disable_when_zoomed = 1
 """""""""""""""
 "{{{
     "allow aliases in vim!
-    set shellcmdflag=-ic
+    "set shellcmdflag=-ic
     "stop this comment continue nonsense
-    set formatoptions-=cro
+    "set formatoptions-=cro
+    "set format options specifically
+    set formatoptions+=tcrwnlj
+    set formatoptions-=oqa2vbmMB1
+    set textwidth=72
 "}}}
 
 """"""""""
 "Mappings"
 """"""""""
-"{{{
+"{{
     "Ctrl-S to save
-    inoremap <c-s> <esc>:w<cr>
-    nnoremap <c-s> :w<cr>
+    "inoremap <c-s> <esc>:w<cr>
+    "nnoremap <c-s> :w<cr>
     "Ctrl-Q to exit in insert mode
-    inoremap <c-q> <esc>:q<cr>
-    nnoremap <c-q> :q<cr>
+    "inoremap <c-q> <esc>:q<cr>
+    "nnoremap <c-q> :q<cr>
     "STOP USING ARROW KEYS
     "double remapped because they still work in insert and I bump them
     noremap <up> <nop>
@@ -112,17 +118,17 @@ let g:tmux_navigator_disable_when_zoomed = 1
     "use <space> to turn off highlighting after search
     nnoremap <space> :nohl<cr>
     "quick indent
-    nnoremap <tab> I<tab><esc>
+    "nnoremap <tab> I<tab><esc>
     "quick un-indent
     "nnoremap <shift><tab> I<BS><esc>
     "same but for blank line
     "nnoremap <return> o<esc>
     "I'm sick of bumping s and S, I never use them
-    nnoremap s <nop>
-    nnoremap S <nop>
-    "Y'all thought I wasn't in Visual Studio
-    inoremap <F7> <esc>:!cl<cr>
-    nnoremap <F7> :!cl<cr>
+    "nnoremap s <nop>
+    "nnoremap S <nop>
+    "quick makes
+    inoremap <F5> <esc>:make<cr>
+    nnoremap <F5> :make<cr>
     "source vimrc quickly
     nnoremap VR :source ~/.vimrc<cr>
     "kill F1 help uselessness
