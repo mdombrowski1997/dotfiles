@@ -2,6 +2,22 @@
 
 " ignore Vi compat
 set nocompatible
+" Pathogen
+execute pathogen#infect()
+" vim-tmux-navigator
+let g:tmux_navigator_no_mappings = 1
+inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+"inoremap <silent> <C-/> <esc>:TmuxNavigatePrevious<cr>i
+"nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+let g:tmux_navigator_save_on_switch = 0
+let g:tmux_navigator_disable_when_zoomed = 1
 
 """"""""""""""""""""""""""""""""""""
 "Colors, Personalizations, and Such"
@@ -37,8 +53,8 @@ set nocompatible
 """""""""
 "{{{
     "enable syntax processing
-    filetype plugin on
     syntax enable
+    filetype plugin indent on
     set modeline
     "enable folding
     set foldenable
@@ -120,12 +136,12 @@ set nocompatible
     "make capital Y work like capital C and D
     nnoremap Y y$
     "for easy pane movement
-    noremap <M-u> <C-w>h
-    noremap <M-i> <C-w>j
-    noremap <M-o> <C-w>k
-    noremap <M-p> <C-w>l
+    noremap <C-h> <C-w>h
+    noremap <C-j> <C-w>j
+    noremap <C-k> <C-w>k
+    noremap <C-l> <C-w>l
     "Tab for autocomplete
-    inoremap <leader><Tab> <C-N>
+    "inoremap <leader><Tab> <C-N>
 "}}}
 
 """"""""""""""

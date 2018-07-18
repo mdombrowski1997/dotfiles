@@ -24,16 +24,21 @@
 
     #easier pane movement with Alt-<vim movement>
     #-n option says prefix is not needed
-    bind-key -n M-h select-pane -L 
-    bind-key -n M-l select-pane -R
-    bind-key -n M-k select-pane -U
-    bind-key -n M-j select-pane -D
+    # O man, a big 'ol switchup
+    bind-key -n C-h select-pane -L
+    bind-key -n C-l select-pane -R
+    bind-key -n C-k select-pane -U
+    bind-key -n C-j select-pane -D
+    # bind-key -n M-h select-pane -L
+    # bind-key -n M-l select-pane -R
+    # bind-key -n M-k select-pane -U
+    # bind-key -n M-j select-pane -D
 
     #easier pane resize with Ctrl-<vim movement>
-    bind-key -n C-k resize-pane -U
-    bind-key -n C-j resize-pane -D
-    bind-key -n C-h resize-pane -L
-    bind-key -n C-l resize-pane -R
+    #bind-key -n C-k resize-pane -U
+    #bind-key -n C-j resize-pane -D
+    #bind-key -n C-h resize-pane -L
+    #bind-key -n C-l resize-pane -R
 
     #bind <Alt>-Shift-(q/e) to change windows
     bind-key -n M-q previous-window
@@ -90,10 +95,24 @@
 #{{{
     #prevent auto-renaming of windows, I want my names
     set-option -g allow-rename off
-
     #quick sourcing of this file '~.tmux.conf' for quick setting edits
     #second phrase prints message at status line to let me know it worked
     bind-key r source-file ~/.tmux/conf \; display-message "tmux.conf reloaded."
+
+    #vim-tmux-navigator things
+    #5 commands are up, left, down, right, and previous panes
+    is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+    bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
+    bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
+    bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
+    bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+    #bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+    bind-key -T copy-mode-vi C-h select-pane -L
+    bind-key -T copy-mode-vi C-j select-pane -D
+    bind-key -T copy-mode-vi C-k select-pane -U
+    bind-key -T copy-mode-vi C-l select-pane -R
+    #bind-key -T copy-mode-vi C-\ select-pane -l
 #}}}
 
 # vim: set foldmethod=marker:
