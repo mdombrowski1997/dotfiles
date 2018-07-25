@@ -7,13 +7,13 @@ execute pathogen#infect()
 " vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
 inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+noremap  <C-h> :TmuxNavigateLeft<cr>
 inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+noremap  <C-j> :TmuxNavigateDown<cr>
 inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+noremap  <C-k> :TmuxNavigateUp<cr>
 inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+noremap  <C-l> :TmuxNavigateRight<cr>
 "inoremap <silent> <C-/> <esc>:TmuxNavigatePrevious<cr>i
 "nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
 let g:tmux_navigator_save_on_switch = 0
@@ -23,6 +23,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 "Colors, Personalizations, and Such"
 """"""""""""""""""""""""""""""""""""
 "{{{
+    set nowrap
     "set colors
     colorscheme default
     "change tabs to be 4 spaces

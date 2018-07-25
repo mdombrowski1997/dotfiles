@@ -1,12 +1,62 @@
-URxvt.letterSpace:      -1
-URxvt.scrollBar:        Fasle
-URxvt.background:       Black
-URxvt.foreground:       White
-URxvt.font:             9x15
-URxvt.title:            urxvt
-URxvt.lineSpace:        0px
-URxvt.cursorBlink:      False
-URxvt.pointerBlank:     True
-URxvt.pointerColor:     Green
-URxvt.pointerColor2:    Black
-URxvt.pointerBlankDelay:4
+!URxvt.letterSpace:      -01
+!URxvt.scrollBar:        False
+!URxvt.background:       Black
+!URxvt.foreground:       White
+!URxvt.font:             Inconsolata
+!URxvt.title:            urxvt
+!URxvt.lineSpace:        0px
+!URxvt.cursorBlink:      False
+!URxvt.pointerBlank:     True
+!URxvt.pointerColor:     Green
+!URxvt.pointerColor2:    Black
+!URxvt.pointerBlankDelay:4
+!URxvt.perl-ext-common:
+
+!hopefully this terminal sucks less
+st.font:            Inconsolata:style=regular:size=16
+st.bold_font:       Inconsolata:style=bold:size=16
+st.background:      #000000
+st.foreground:      #FFFFFF
+st.cursorColor:     #00FF00
+st.termname:        xterm-256color
+st.shell:           /bin/bash
+st.bellvolume:      10
+st.tabspaces:       4
+st.chscale:         1.0
+st.cwscale:         1.0
+!
+!color defs (terminal.sexy)
+!normal, then bright
+!
+!black
+st.color0:  #000000
+!red
+st.color1:  #FF0000
+!green
+st.color2:  #00FF00
+!yellow
+st.color3:  #FFFF00
+!blue
+st.color4:  #0000FF
+!magenta
+st.color5:  #FF00FF
+!cyan
+st.color6:  #00FFFF
+!white
+st.color7:  #FFFFFF
+!black
+st.color8:  #000000
+!red
+st.color9:  #FF0000
+!green
+st.color10: #00FF00
+!yellow
+st.color11: #FFFF00
+!blue
+st.color12: #0000FF
+!magenta
+st.color13: #FF00FF
+!cyan
+st.color14: #00FFFF
+!white
+st.color15: #FFFFFF

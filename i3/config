@@ -195,8 +195,7 @@ bindsym $mod+r mode "resize"
 mode "&#xf023;"
 {
     bindsym $mod+f fullscreen disable
-    bindsym $mod+p exec "sudo systemctl suspend"
-    bindsym $mod+Shift+p exec "sudo systemctl hibernate"
+    bindsym $mod+p exec "/home/oh/code/dotfiles/scripts/sleep"
 }
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -255,7 +254,7 @@ hide_edge_borders both
 
 #auto launch bindings
 bindsym $mod+F1 workspace $workspace1 ; exec "i3-sensible-terminal -e /home/oh/.config/i3/F1"
-bindsym $mod+F2 workspace $workspace2 ; exec "firefox"
+bindsym $mod+F2 workspace $workspace2 ; exec "firefox-developer-edition"
 bindsym $mod+F3 workspace $workspace3 ; exec "evince"
 bindsym $mod+F4 workspace $workspace4 ; exec "libreoffice"
 bindsym $mod+F5 workspace $workspace5 ; exec "discord"
@@ -272,7 +271,7 @@ bindsym Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z"
 bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%H-%M-%S_%m-%d-%Y.png -z"
 
 #force web into workspace 2
-assign [class="(?i)firefox"] $workspace2
+assign [class="(?i)firefox-developer-edition"] $workspace2
 #pdf stuff on workspace 3
 assign [class="(?i)evince"] $workspace3
 #office stuff on workspace 4

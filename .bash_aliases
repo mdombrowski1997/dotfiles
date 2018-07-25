@@ -63,21 +63,7 @@ alias gdb='gdb -q'
 #alias batt='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage" | grep -v "discharging"'
 alias bat='cat /sys/class/power_supply/BAT0/capacity'
 #adjust brightness to % passed in of max_brightness
-bl()
-{
-    if [ "$#" == 0 ]; then
-        curblightlvl=$(cat /sys/class/backlight/intel_backlight/brightness)
-        ((curblightlvl = curblightlvl / 44))
-
-        echo "   backlight is currently: $curblightlvl"
-    fi
-
-    if [ "$#" == 1 ]; then
-        ((blightlvl = $1 * 44))
-
-        echo $blightlvl | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
-    fi
-}
+alias bl='sudo /home/oh/code/dotfiles/scripts/bl'
 #quick volume manipulation
 alias vol='alsamixer'
 #quick check size of folder
@@ -110,7 +96,7 @@ alias zx='sudo systemctl suspend; exit'
 #quickly source bashrc
 alias s='. ~/.bashrc'
 #too much typing not to do this
-alias a='tmux a || tmux'
+alias a='tmux attach -t work || tmux new-session -s work'
 #burn cd
 #alias burn='wodim -eject -tao speed=2 dev=/dev/cdrom -v -data'
 #rip cd and lock button
@@ -221,7 +207,21 @@ gpedit() {
     rm tmp
 }
 #easy access to aws
-alias chief='ssh -i ~/code/aws/chief_key.pem -p 22 ubuntu@35.174.114.197'
+alias chief='ssh pi@192.168.1.9 -p2302'
+#better aur interface
+aur() {
+    git clone https://aur.archlinux.org/$1.git ~/builds/$1
+}
+#git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gb='git branch'
+alias gch='git checkout'
+alias gsh='git stash'
+alias gsa='git stash apply'
+alias gl='git log --pretty=oneline'
+alias glg='git log --graph'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

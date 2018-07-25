@@ -73,11 +73,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -187,3 +183,9 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 export VISUAL='/usr/bin/vim'
 export EDITOR='/usr/bin/vim'
+export SUDO_EDITOR='/usr/bin/vim'
+export TERMINAL='/usr/bin/st'
+#get completion
+source /usr/share/bash-completion/bash_completion
+#add ruby gems to path
+PATH="$PATH:/home/oh/.gem/ruby/2.5.0/bin"
