@@ -7,6 +7,8 @@ fi
 
 #votd (more like VotLogin)
 if [ $TERM == 'linux' ]; then
+    #get that good clean font
+    setfont sun12x22
     echo -ne '\n'
     ~/code/garden/mem/mem
 fi
@@ -25,4 +27,10 @@ if [ $TERM == 'linux' ]; then
         #make fprint reader useable
         sudo chmod 666 /dev/bus/usb/001/003
     fi
+fi
+
+#please, please, please stop the beeping
+#if ! [ -n $(lsmod|grep 'pcspkr'|cut -f1 -d' ') ]; then
+if ! [ -n $(grep /proc/modules -e 'pcspkr') ]; then
+    sudo rmmod pcspkr
 fi

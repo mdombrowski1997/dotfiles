@@ -29,7 +29,7 @@ alias lc='git show --summary'
 #go to previous directory
 alias pd='cd -'
 #I do this too often
-alias rd='rm -r'
+#alias rd='rm -r'
 #add some pushd/popd/dirs stuff
 #--------------------------------------------------}}}
 
@@ -141,9 +141,9 @@ cur()
     #fi
 #}
 #quick liberty wifi connect
-alias libcon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp3s0 -q'
+alias libcon='sudo wpa_supplicant -B -i wlp1s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp1s0 -q'
 #quick home wifi connect
-alias homecon='sudo wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp3s0 -q'
+alias homecon='sudo wpa_supplicant -B -i wlp1s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp1s0 -q'
 #fix psmouse modules faster
 #alias psm='sudo modprobe psmouse'
 #alias psr='sudo modprobe -r psmouse'
@@ -222,6 +222,8 @@ alias gsh='git stash'
 alias gsa='git stash apply'
 alias gl='git log --pretty=oneline'
 alias glg='git log --graph'
+#quick sleep
+alias zzz='/home/oh/code/dotfiles/scripts/zzz'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

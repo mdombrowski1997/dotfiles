@@ -2,13 +2,13 @@
 
 if [ "$#" == 0 ]; then
     curblightlvl=$(cat /sys/class/backlight/intel_backlight/brightness)
-    ((curblightlvl = curblightlvl / 44))
+    ((curblightlvl = curblightlvl / 75))
 
     echo "   backlight is currently: $curblightlvl"
 fi
 
 if [ "$#" == 1 ]; then
-    ((blightlvl = $1 * 44))
+    ((blightlvl = $1 * 75))
 
     echo $blightlvl | sudo tee /sys/class/backlight/intel_backlight/brightness > /dev/null
 fi

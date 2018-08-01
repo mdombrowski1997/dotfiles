@@ -3,11 +3,10 @@
 #                creates symlinks to repo files, backs up existing files as ~/.name.bak
 
 #set dotfiles folder
-dotfiles='/home/oh/code/dotfiles'
+dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 
-#.Xresources
-#{{{
-read -p 'link ~/.Xresources? [Y/n] ' response
+#.Xresources    {{{
+read -p 'link ~/.Xresources? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -f ~/.Xresources ]; then
         mv ~/.Xresources ~/.Xresources.bak
@@ -17,9 +16,19 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.bash_aliases
-#{{{
-read -p 'link ~/.bash_aliases? [Y/n] ' response
+#.xinitrc       {{{
+read -p 'link ~/.xinitrc? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.xinitrc ]; then
+        mv ~/.xinitrc ~/.xinitrc.bak
+        echo "backing up current ~/.xinitrc ~/.xinitrc.bak"
+    fi
+    ln -s $dotfiles/.xinitrc ~/.xinitrc
+fi
+#}}}
+
+#.bash_aliases  {{{
+read -p 'link ~/.bash_aliases? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -f ~/.bash_aliases ]; then
         mv ~/.bash_aliases ~/.bash_aliases.bak
@@ -29,9 +38,8 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.bash_login
-#{{{
-read -p 'link ~/.bash_login? [Y/n] ' response
+#.bash_login    {{{
+read -p 'link ~/.bash_login? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -f ~/.bash_login ]; then
         mv ~/.bash_login ~/.bash_login.bak
@@ -41,9 +49,8 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.bashrc
-#{{{
-read -p 'link ~/.bashrc? [Y/n] ' response
+#.bashrc        {{{
+read -p 'link ~/.bashrc? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -f ~/.bashrc ]; then
         mv ~/.bashrc ~/.bashrc.bak
@@ -53,9 +60,8 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.tmux/
-#{{{
-read -p 'link ~/.tmux/? [Y/n] ' response
+#.tmux/         {{{
+read -p 'link ~/.tmux/? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -d ~/.tmux.conf ]; then
         mv ~/.tmux/ ~/.tmux.bak/
@@ -65,9 +71,8 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.vimrc
-#{{{
-read -p 'link ~/.vimrc? [Y/n] ' response
+#.vimrc         {{{
+read -p 'link ~/.vimrc? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -f ~/.vimrc ]; then
         mv ~/.vimrc ~/.vimrc.bak
@@ -77,9 +82,8 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#.config/i3/
-#{{{
-read -p 'link ~/.config/.i3/? [Y/n] ' response
+#.config/i3/    {{{
+read -p 'link ~/.config/i3/? [y/N] ' response
 if [ $response == "y" ]; then
     if [ -d ~/.config/i3/config ]; then
         mv ~/.config/i3/ ~/.config/i3.bak/
@@ -89,8 +93,15 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
-#make this sucker idiot-proof - remove the ability to accidentilly double run
-#sike, i'll still end up finding a way to wreck myself with this
-chmod 664 setup
+#.vim/  {{{
+read -p 'link ~/.vim/? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.vim/ ]; then
+        mv ~/.vim/ ~/.vim/
+        echo "backing up current ~/.vim/ as ~/.vim.bak/"
+    fi
+    ln -s $dotfiles/vim ~/.vim
+fi
+#}}}
 
 # vim: set foldmethod=marker:

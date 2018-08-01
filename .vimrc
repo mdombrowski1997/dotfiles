@@ -19,6 +19,9 @@ noremap  <C-l> :TmuxNavigateRight<cr>
 let g:tmux_navigator_save_on_switch = 0
 let g:tmux_navigator_disable_when_zoomed = 1
 set noswapfile
+set noshowmode
+set t_Co=256
+colorscheme Tomorrow-Night-Eighties
 
 """"""""""""""""""""""""""""""""""""
 "Colors, Personalizations, and Such"
@@ -98,7 +101,7 @@ set noswapfile
 """"""""""
 "Mappings"
 """"""""""
-"{{
+"{{{
     "Ctrl-S to save
     "inoremap <c-s> <esc>:w<cr>
     "nnoremap <c-s> :w<cr>
