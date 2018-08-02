@@ -22,6 +22,7 @@ set noswapfile
 set noshowmode
 set t_Co=256
 colorscheme Tomorrow-Night-Eighties
+let g:netrw_dirhistmax = 0
 
 """"""""""""""""""""""""""""""""""""
 "Colors, Personalizations, and Such"

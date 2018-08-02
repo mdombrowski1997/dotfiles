@@ -71,22 +71,21 @@
 #             Status Bar              # 
 #######################################
 #{{{
+    set-option -g status on
     #set bg and fg colour scheme
-    set-option -g status-bg magenta
-    set-option -g status-fg white
+    set-option -g status-style "bg=#111111"
+    set-option -ag status-style "fg=#FFFFFF"
 
     #make status bar refresh every 60 seconds instead of 15
     set-option -g status-interval 60
     #prevent dumb truncation of my execessive status
     set-option -g status-right-length 90
 
-    #status vars
-    #essid="$(iwconfig wlp3s0 | grep wlp3s0 | sed 's/^.*ESSID://' | sed 's/^.*"//' | sed 's/\/24.*$//')"
-
     #make right side of status bar have git branch, batt, and time/date
-    set-option -g status-right "#[fg=green,bold]#(~/.tmux/ip)#[fg=white,bold] | #[fg=yellow,bold]#(~/.tmux/ac_check)#(~/.tmux/bat)%#[fg=white,bold] | #[fg=cyan,bold]%m/%d/%Y #[fg=cyan,bold]%I:%M %p"
-    #[fg=green,bold][[#(git branch) branch ]] for git branch,
-    #   I don't use git branching enough for this to make sense
+    set-option -g status-right "#[fg=green,bold]#(~/.tmux/ip)"
+    set-option -ag status-right " #[fg=white,bold]| #[fg=yellow,bold]#(~/.tmux/ac_check)#(~/.tmux/bat)%"
+    set-option -ag status-right " #[fg=white,bold]| #[fg=red,bold]%m/%d/%Y #[fg=cyan,bold]%H:%M"
+    set-option -ag status-right " #[fg=white,bold]| #[fg=magenta,bold]#(~/.tmux/branch)"
 #}}}
 
 #######################################
