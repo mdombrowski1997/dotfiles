@@ -1,5 +1,5 @@
 #!/bin/bash
 
-network=$(iw wlp3s0 info | grep ssid | cut -d' ' -f 2-)
+network=$(iw wlp1s0 info | grep ssid | cut -d' ' -f 2-)
 
 echo -n $network

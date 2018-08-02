@@ -1,36 +1,18 @@
 "~/.vimrc - sourced when vim starts, vim personalizations
 
-" ignore Vi compat
-set nocompatible
-" Pathogen
-execute pathogen#infect()
-" vim-tmux-navigator
-let g:tmux_navigator_no_mappings = 1
-inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
-noremap  <C-h> :TmuxNavigateLeft<cr>
-inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
-noremap  <C-j> :TmuxNavigateDown<cr>
-inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
-noremap  <C-k> :TmuxNavigateUp<cr>
-inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
-noremap  <C-l> :TmuxNavigateRight<cr>
-"inoremap <silent> <C-/> <esc>:TmuxNavigatePrevious<cr>i
-"nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
-let g:tmux_navigator_save_on_switch = 0
-let g:tmux_navigator_disable_when_zoomed = 1
-set noswapfile
-set noshowmode
-set t_Co=256
-colorscheme Tomorrow-Night-Eighties
-let g:netrw_dirhistmax = 0
-
 """"""""""""""""""""""""""""""""""""
 "Colors, Personalizations, and Such"
 """"""""""""""""""""""""""""""""""""
 "{{{
     set nowrap
     "set colors
-    colorscheme default
+    set t_Co=256
+    colorscheme Tomorrow-Night-Eighties
+    "Don't keep a history I don't want
+    let g:netrw_dirhistmax = 0
+    "unnecessary
+    set noswapfile
+    set noshowmode
     "change tabs to be 4 spaces
     set tabstop=4
     set softtabstop=4
@@ -54,12 +36,6 @@ let g:netrw_dirhistmax = 0
     hi Folded ctermfg=3
     "Finally get some decent comment colors
     hi Comment ctermfg=darkgreen
-"}}}
-
-"""""""""
-"Folding"
-"""""""""
-"{{{
     "enable syntax processing
     syntax enable
     filetype plugin indent on
@@ -70,34 +46,12 @@ let g:netrw_dirhistmax = 0
     set foldlevelstart=0
     "fold based on syntax
     set foldmethod=syntax
-"}}}
-
-"""""""""""""""""""""""""
-"Searching and Registers"
-"""""""""""""""""""""""""
-"{{{
-    "Searching and Registers"
-    "make yank clipboard system clipboard
-    set clipboard=unnamed
     "search as I type
     set incsearch
     "highlight all matches
     set hlsearch
 "}}}
 
-"""""""""""""""
-"Misc Settings"
-"""""""""""""""
-"{{{
-    "allow aliases in vim!
-    "set shellcmdflag=-ic
-    "stop this comment continue nonsense
-    "set formatoptions-=cro
-    "set format options specifically
-    set formatoptions+=tcrwnlj
-    set formatoptions-=oqa2vbmMB1
-    set textwidth=72
-"}}}
 
 """"""""""
 "Mappings"
@@ -154,42 +108,34 @@ let g:netrw_dirhistmax = 0
     noremap <C-l> <C-w>l
     "Tab for autocomplete
     "inoremap <leader><Tab> <C-N>
+    " vim-tmux-navigator
+    let g:tmux_navigator_no_mappings = 1
+    inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
+    noremap  <C-h> :TmuxNavigateLeft<cr>
+    inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
+    noremap  <C-j> :TmuxNavigateDown<cr>
+    inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
+    noremap  <C-k> :TmuxNavigateUp<cr>
+    inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
+    noremap  <C-l> :TmuxNavigateRight<cr>
+    "inoremap <silent> <C-/> <esc>:TmuxNavigatePrevious<cr>i
+    "nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
+    let g:tmux_navigator_save_on_switch = 0
+    let g:tmux_navigator_disable_when_zoomed = 1
 "}}}
 
-""""""""""""""
-"Autocommands"
-""""""""""""""
+"""""""""""""""
+"Misc Settings"
+"""""""""""""""
 "{{{
-    ""General actions for all files
-    "augroup general_cmds
-        "autocmd!
-        ""change foldmethod during insertion to prevention spontaneous unfolding
-        "autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-        ""change back when leaving insert
-        "autocmd InsertLeave, WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
-    "augroup END
-"
-    ""actions for c++ source files
-    "augroup filetype_cpp
-        "autocmd!
-        ""abbreviations for typo correction and such
-        "iabbrev #i #include <><esc>l<bs>
-        "iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-        "iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-    "augroup END
-    ""actions for c source files
-    "augroup filetype_c
-        "autocmd!
-        ""abbreviations for typo correction and such
-        "iabbrev #i #include <><esc>l<bs>
-        "iabbrev forl for (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-        "iabbrev whilel while (  )<cr><tab>{<cr><tab>}<esc>kk$hhi
-    "augroup END
-    ""actions for LaTeX
-    "augroup filetype_c
-        "autocmd!
-        "inoremap <leader>m $$<esc>i
-    "augroup END
+    " ignore Vi compat
+    set nocompatible
+    " Pathogen
+    execute pathogen#infect()
+    "set format options specifically AFTER loading filetypes
+    au FileType * set fo+=t fo+=c fo+=r fo+=w fo+=n fo+=l fo+=j
+    au FileType * set fo-=o fo-=q fo-=a fo-=2 fo-=v fo-=b fo-=m fo-=M fo-=B fo-=1
+    set textwidth=72
 "}}}
 
 " vim: set foldmethod=marker:

@@ -1,5 +1,8 @@
 #! /bin/bash
 
+#move first
+cd $1
+
 git branch &> /dev/null
 if [ $? == "0" ]; then
     branch=$(git branch | grep '*' | cut -f2 -d' ')
