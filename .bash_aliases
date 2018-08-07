@@ -185,8 +185,8 @@ gpedit() {
         rm tmp
     fi
 }
-#easy access to aws
-alias chief='ssh pi@192.168.1.9 -p2302'
+#easy access to website
+alias chief='ssh pi@chiefwhooligan.us.to'
 #better aur interface
 aur() {
     git clone https://aur.archlinux.org/$1.git ~/builds/$1
