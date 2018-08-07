@@ -11,7 +11,7 @@
     unbind-key C-b
     #-g option makes global change
     set-option -g prefix C-a
-    #I think line 3 here is needed for nested sessions, I'm following blindly here
+    #Needed for nested sessions
     bind-key C-a send-prefix
 
     #open new windows after current, not at end
@@ -22,23 +22,18 @@
     bind-key v split-window -h -c '#{pane_current_path}'
     bind-key h split-window -v -c '#{pane_current_path}'
 
-    #easier pane movement with Alt-<vim movement>
+    #easier pane movement with Ctrl-<vim movement>
     #-n option says prefix is not needed
-    # O man, a big 'ol switchup
     bind-key -n C-h select-pane -L
     bind-key -n C-l select-pane -R
     bind-key -n C-k select-pane -U
     bind-key -n C-j select-pane -D
-    # bind-key -n M-h select-pane -L
-    # bind-key -n M-l select-pane -R
-    # bind-key -n M-k select-pane -U
-    # bind-key -n M-j select-pane -D
 
-    #easier pane resize with Ctrl-<vim movement>
-    #bind-key -n C-k resize-pane -U
-    #bind-key -n C-j resize-pane -D
-    #bind-key -n C-h resize-pane -L
-    #bind-key -n C-l resize-pane -R
+    #easier pane resize with Ctrl-(CAPS)<vim movement>
+    bind-key -n C-K resize-pane -U
+    bind-key -n C-J resize-pane -D
+    bind-key -n C-H resize-pane -L
+    bind-key -n C-L resize-pane -R
 
     #bind <Alt>-Shift-(q/e) to change windows
     bind-key -n M-q previous-window
@@ -55,7 +50,7 @@
 
     #ESC is killing my flow in vim
     #apparently tmux waits for esc seq
-    set -s escape-time 0
+    set -sg escape-time 0
 
     #quick edit todo
     bind-key e new-window "vim ~/.todo"
@@ -92,8 +87,8 @@
     #make right side of status bar have git branch, batt, and time/date
     set-option -g status-right "#[fg=green,bold]#(~/.tmux/ip)"
     set-option -ag status-right " #[default]| #[fg=yellow,bold]#(~/.tmux/ac_check)#(~/.tmux/bat)%"
-    set-option -ag status-right " #[default]| #[fg=red,bold]%m/%d/%Y #[fg=cyan,bold]%H:%M"
-    set-option -ag status-right " #[default]| #[fg=magenta,bold]#(~/.tmux/branch #{pane_current_path}) "
+    set-option -ag status-right " #[default]| #[fg=magenta,bold]%m/%d/%Y #[fg=cyan,bold]%H:%M"
+    set-option -ag status-right " #[default]| #[fg=red,bold]#(~/.tmux/branch #{pane_current_path}) "
 #}}}
 
 #######################################

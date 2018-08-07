@@ -1,3 +1,4 @@
+" Last Night Eighties, based on...
 " Tomorrow Night Eighties - Full Colour and 256 Colour
 " http://chriskempson.com
 "
@@ -8,7 +9,7 @@ let s:foreground = "cccccc"
 let s:background = "2d2d2d"
 let s:selection = "515151"
 let s:line = "393939"
-let s:comment = "999999"
+let s:comment = "ff99ff"
 let s:red = "f2777a"
 let s:orange = "f99157"
 let s:yellow = "ffcc66"
@@ -21,7 +22,8 @@ let s:window = "4d5057"
 hi clear
 syntax reset
 
-let g:colors_name = "Tomorrow-Night-Eighties"
+let g:colors_name = "Last-Night-Eighties"
+hi Todo	term=standout ctermbg=Yellow ctermfg=Black guifg=Blue guibg=Yellow
 
 if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Returns an approximate grey index for the given grey level

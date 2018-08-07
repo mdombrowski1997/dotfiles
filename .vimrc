@@ -7,7 +7,7 @@
     set nowrap
     "set colors
     set t_Co=256
-    colorscheme Tomorrow-Night-Eighties
+    colorscheme elfking
     "Don't keep a history I don't want
     let g:netrw_dirhistmax = 0
     "unnecessary
@@ -52,7 +52,6 @@
     set hlsearch
 "}}}
 
-
 """"""""""
 "Mappings"
 """"""""""
@@ -75,6 +74,7 @@
     inoremap <right> <nop>
     "further killing of arrow keys to stop 'O' lag
     set noesckeys
+    set timeout ttimeoutlen=100
     "use <space> to turn off highlighting after search
     nnoremap <space> :nohl<cr>
     "quick indent
@@ -86,9 +86,6 @@
     "I'm sick of bumping s and S, I never use them
     "nnoremap s <nop>
     "nnoremap S <nop>
-    "quick makes
-    inoremap <F5> <esc>:make<cr>
-    nnoremap <F5> :make<cr>
     "source vimrc quickly
     nnoremap VR :source ~/.vimrc<cr>
     "kill F1 help uselessness
@@ -101,6 +98,8 @@
     noremap <leader>nhx :%!xxd -r<cr>
     "make capital Y work like capital C and D
     nnoremap Y y$
+    "save before make - MAJOR BUGGY
+    "cnoremap make w<cr>:make<cr>
     "for easy pane movement
     noremap <C-h> <C-w>h
     noremap <C-j> <C-w>j
@@ -110,15 +109,10 @@
     "inoremap <leader><Tab> <C-N>
     " vim-tmux-navigator
     let g:tmux_navigator_no_mappings = 1
-    inoremap <silent> <C-h> <esc>:TmuxNavigateLeft<cr>
-    noremap  <C-h> :TmuxNavigateLeft<cr>
-    inoremap <silent> <C-j> <esc>:TmuxNavigateDown<cr>
-    noremap  <C-j> :TmuxNavigateDown<cr>
-    inoremap <silent> <C-k> <esc>:TmuxNavigateUp<cr>
-    noremap  <C-k> :TmuxNavigateUp<cr>
-    inoremap <silent> <C-l> <esc>:TmuxNavigateRight<cr>
-    noremap  <C-l> :TmuxNavigateRight<cr>
-    "inoremap <silent> <C-/> <esc>:TmuxNavigatePrevious<cr>i
+    noremap  <silent> <C-h> :TmuxNavigateLeft<cr>
+    noremap  <silent> <C-j> :TmuxNavigateDown<cr>
+    noremap  <silent> <C-k> :TmuxNavigateUp<cr>
+    noremap  <silent> <C-l> :TmuxNavigateRight<cr>
     "nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
     let g:tmux_navigator_save_on_switch = 0
     let g:tmux_navigator_disable_when_zoomed = 1

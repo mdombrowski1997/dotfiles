@@ -101,7 +101,7 @@ set $workspace4 "4: &#xf15c;"
 #set $workspace4 "&#xf15c;"
 #comment(chat) icon
 #set $workspace5 "5: &#xf0e6; Chat"
-set $workspace5 "5: &#xf0e6;"
+set $workspace5 "5: &#xf11b;"
 #set $workspace5 "&#xf0e6;"
 #microchip icon
 #set $workspace6 "6: &#xf030; View"
@@ -195,7 +195,8 @@ bindsym $mod+r mode "resize"
 mode "&#xf023;"
 {
     bindsym $mod+f fullscreen disable
-    bindsym $mod+p exec "/home/oh/code/dotfiles/scripts/sleep"
+    bindsym $mod+p exec "/home/oh/code/dotfiles/scripts/zzz"
+    bindsym $mod+Shift+p exec "/home/oh/code/dotfiles/scripts/ZZZ"
 }
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -350,7 +351,7 @@ bindsym $mod+space sticky toggle
 #to stick floating window in top+left corner
 bindsym $mod+bracketleft move absolute position 0 0 ; resize set 456 384
 #to stick floating window in top+right corner
-bindsym $mod+bracketright move absolute position 870 0 ; resize set 500 384
+bindsym $mod+bracketright move absolute position 1420 0 ; resize set 500 384
 
 #specific placement of "popupd" windows
 for_window [title="popupd"] floating enable, move absolute position 16 8, sticky enable

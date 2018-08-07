@@ -29,20 +29,20 @@ st.color5:  #FF00FF
 !cyan
 st.color6:  #00FFFF
 !white
-st.color7:  #FFFFFF
+st.color7:  #EEEEEE
 !black
-st.color8:  #000000
+st.color8:  #111111
 !red
-st.color9:  #FF0000
+st.color9:  #FF2222
 !green
-st.color10: #00FF00
+st.color10: #22FF22
 !yellow
-st.color11: #FFFF00
+st.color11: #FFFF22
 !blue
-st.color12: #0000FF
+st.color12: #2222FF
 !magenta
-st.color13: #FF00FF
+st.color13: #FF22FF
 !cyan
-st.color14: #00FFFF
+st.color14: #22FFFF
 !white
 st.color15: #FFFFFF

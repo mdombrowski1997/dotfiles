@@ -7,12 +7,6 @@
 ############
 #--------------------------------------------------{{{
 alias up='cd ..'
-#quick movement to common dirs
-#alias dof='cd ~/Documents/Code/bash/dotfiles'
-#quick go to cpp projects
-#alias gcpp='cd ~/Documents/Code/cpp'
-#reset to default like I just logged in
-#alias res='cd && clear && cat .todo'
 #ls variations
 alias ls='ls --color=auto'
 alias  l='ls -CF'
@@ -20,17 +14,8 @@ alias ll='ls -alhF'
 alias ld='ls -AlhFd'
 #grep coloring
 alias grep='grep --color=auto'
-#list git repos
-alias repos='find ~ -name .git'
-#quick pi connection
-#alias pi='ssh alarm@alarmpi'
-#see last commit for git repo
-alias lc='git show --summary'
 #go to previous directory
 alias pd='cd -'
-#I do this too often
-#alias rd='rm -r'
-#add some pushd/popd/dirs stuff
 #--------------------------------------------------}}}
 
 #######################
@@ -68,10 +53,6 @@ alias bl='sudo /home/oh/code/dotfiles/scripts/bl'
 alias vol='alsamixer'
 #quick check size of folder
 alias so='du -hs'
-#quick time/date output when no tmux
-#alias t='echo -n "  " && date +%-I:%M\ %p'
-#check apps downloaded with apt-get
-#alias apps='zcat /var/log/apt/history.log.*.gz | cat - /var/log/apt/history.log | grep -Po '"'"'^Commandline: apt-get install (?!.*--reinstall)\K.*'"'"''
 #--------------------------------------------------}}}
 
 ################
@@ -83,16 +64,12 @@ alias so='du -hs'
 #alias guioff='sudo service lightdm stop'
 #make wireless on/off easier
 #alias wifi='nmcli r wifi'
-alias wu='sudo ip link set wlp3s0 up'
-alias wd='sudo ip link set wlp3s0 down'
+alias wu='sudo ip link set wlp1s0 up'
+alias wd='sudo ip link set wlp1s0 down'
 #I type 'startx' way too much for 6 chars
 alias sx='startx'
-#compile fast
-alias cl='make all'
-#suspend
-alias zz='sudo systemctl suspend'
 #suspend and close terminal
-alias zx='sudo systemctl suspend; exit'
+alias zx='/home/oh/code/dotfiles/scripts/zzz && exit'
 #quickly source bashrc
 alias s='. ~/.bashrc'
 #too much typing not to do this
@@ -192,19 +169,21 @@ alias decrypt='gpg2 --decrypt'
 gpgrep() {
     if [ "$#" -ne 2 ]; then
         printf "Hey, make sure you pass a file and a pattern\n"
+    else
+        #decrypt file and find case insesitive match with the password below
+        gpg2 --decrypt $1 | grep -e $2 -A 1 -i
     fi
-    #decrypt file and find case insesitive match with the password below
-    gpg2 --decrypt $1 | grep -e $2 -A 1 -i
 }
 #now easy combo
 gpedit() {
     if [ "$#" -ne 1 ]; then
         printf "Hey, make sure you pass a file\n"
+    else
+        gpg2 --decrypt $1 > tmp && \
+        vim tmp && \
+        gpg2 --output $1 --encrypt tmp && \
+        rm tmp
     fi
-    gpg2 --decrypt $1 > tmp && \
-    vim tmp && \
-    gpg2 --output $1 --encrypt tmp && \
-    rm tmp
 }
 #easy access to aws
 alias chief='ssh pi@192.168.1.9 -p2302'
@@ -212,6 +191,8 @@ alias chief='ssh pi@192.168.1.9 -p2302'
 aur() {
     git clone https://aur.archlinux.org/$1.git ~/builds/$1
 }
+#list git repos
+alias repos='find ~ -name .git'
 #git aliases
 alias gs='git status'
 alias ga='git add'
@@ -221,9 +202,14 @@ alias gch='git checkout'
 alias gsh='git stash'
 alias gsa='git stash apply'
 alias gl='git log --pretty=oneline'
+alias glc='git show --summary'
 alias glg='git log --graph'
 #quick sleep
 alias zzz='/home/oh/code/dotfiles/scripts/zzz'
+#pacman things
+alias pacsearch='pacman -Ss '
+alias pacinstall='sudo pacman -S '
+alias pacupdate='sudo pacman -Syu'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

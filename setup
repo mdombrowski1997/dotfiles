@@ -104,4 +104,26 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
+#.mutt/  {{{
+read -p 'link ~/.mutt/? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.mutt/ ]; then
+        mv ~/.mutt/ ~/.mutt/
+        echo "backing up current ~/.mutt/ as ~/.mutt.bak/"
+    fi
+    ln -s $dotfiles/mutt ~/.mutt
+fi
+#}}}
+
+#.newsboat/  {{{
+read -p 'link ~/.newsboat/? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.newsboat/ ]; then
+        mv ~/.newsboat/ ~/.newsboat/
+        echo "backing up current ~/.newsboat/ as ~/.newsboat.bak/"
+    fi
+    ln -s $dotfiles/newsboat ~/.newsboat
+fi
+#}}}
+
 # vim: set foldmethod=marker:

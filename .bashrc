@@ -189,3 +189,7 @@ export TERMINAL='/usr/bin/st'
 source /usr/share/bash-completion/bash_completion
 #add ruby gems to path
 PATH="$PATH:/home/oh/.gem/ruby/2.5.0/bin"
+if [ $TERM == 'linux' ]; then
+    #get that good clean font
+    setfont sun12x22
+fi
