@@ -1,0 +1,8 @@
+#! /bin/bash
+
+let p=$(sudo /home/oh/code/dotfiles/scripts/bl)-8
+if [ $p -lt "1" ]; then
+    sudo /home/oh/code/dotfiles/scripts/bl 1
+else
+    sudo /home/oh/code/dotfiles/scripts/bl $p
+fi

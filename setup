@@ -82,6 +82,17 @@ if [ $response == "y" ]; then
 fi
 #}}}
 
+#.inputrc         {{{
+read -p 'link ~/.inputrc? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.inputrc ]; then
+        mv ~/.inputrc ~/.inputrc.bak
+        echo "backing up current ~/.inputrc as ~/.inputrc.bak"
+    fi
+    ln -s $dotfiles/.inputrc ~/.inputrc
+fi
+#}}}
+
 #.config/i3/    {{{
 read -p 'link ~/.config/i3/? [y/N] ' response
 if [ $response == "y" ]; then

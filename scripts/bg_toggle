@@ -1,0 +1,21 @@
+#! /bin/bash
+
+current=$(ls -l /home/oh/ktp/Backgrounds/current | tr -s ' ' | cut -d' ' -f11 | cut -d'/' -f6)
+
+if [[ $current == "art" ]]; then
+    target=music
+elif [[ $current == "music" ]]; then
+    target=art
+else
+    printf "Error $current is incorrect\n"
+    exit
+fi
+
+base=/home/oh/ktp/Backgrounds
+rm $base/current
+ln -s $base/$target $base/current
+
+# Pick from folder
+file=$(ls -H /home/oh/ktp/Backgrounds/current/1* | sort -R | head -1)
+# Set background
+feh --no-fehbg --bg-fill $file

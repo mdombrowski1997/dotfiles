@@ -1,0 +1,4 @@
+#! /bin/bash
+
+# Set blank background
+feh --no-fehbg --bg-fill /home/oh/ktp/Backgrounds/Empty.png

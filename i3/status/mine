@@ -37,19 +37,23 @@ do
     network=$(~/.config/i3/status/network)
     if [ -z "$network" ]; then
         wireless="No network";
-        net_color="#222222";
+        net_color="#606060";
     else
         wireless="$ip on {$network}"
         net_color="#FF00FF";
     fi
     ac=$(~/.config/i3/status/ac_check)
     bat=$(~/.config/i3/status/bat)
-    if [ $bat -ge 70 ]; then
+    if [ $bat -ge 80 ]; then
         bat_color="#00FF00";
-    elif [ $bat -le 30 ]; then
-        bat_color="#FF0000";
+    elif [ $bat -ge 60 ]; then
+        bat_color="#80FF00";
+    elif [ $bat -ge 40 ]; then
+        bat_color="#FFFF00";
+    elif [ $bat -ge 20 ]; then
+        bat_color="#FF8000";
     else
-        bat_color="#FFFFFF";
+        bat_color="#FF0000";
     fi
     datetime=$(~/.config/i3/status/date)
 
@@ -64,7 +68,7 @@ do
     echo -n ",{\"color\":\"$bat_color\", \"full_text\":\"$ac $bat%\"}" || exit 1
     echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1
     echo ",{\"color\":\"#0088FF\", \"full_text\":\"$datetime\"}]" || exit 1
-    #sleep 10
+    sleep 15
 done
 
 # vim :set foldmethod=marker:

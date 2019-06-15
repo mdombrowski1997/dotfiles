@@ -2,8 +2,8 @@
 st.font:            Inconsolata:style=regular:size=16
 st.bold_font:       Inconsolata:style=bold:size=16
 st.background:      #252525
-st.foreground:      #FFFFFF
-st.cursorColor:     #00FF00
+st.foreground:      #D0E0D0
+st.cursorColor:     #20E020
 st.termname:        xterm-256color
 st.shell:           /bin/bash
 st.bellvolume:      10
@@ -23,7 +23,7 @@ st.color2:  #00FF00
 !yellow
 st.color3:  #FFFF00
 !blue
-st.color4:  #0000FF
+st.color4:  #2080FF
 !magenta
 st.color5:  #FF00FF
 !cyan
@@ -33,16 +33,16 @@ st.color7:  #EEEEEE
 !black
 st.color8:  #111111
 !red
-st.color9:  #FF2222
+st.color9:  #FF4040
 !green
-st.color10: #22FF22
+st.color10: #40FF40
 !yellow
-st.color11: #FFFF22
+st.color11: #FFFF40
 !blue
-st.color12: #2222FF
+st.color12: #4040FF
 !magenta
-st.color13: #FF22FF
+st.color13: #FF40FF
 !cyan
-st.color14: #22FFFF
+st.color14: #40FFFF
 !white
 st.color15: #FFFFFF

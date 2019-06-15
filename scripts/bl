@@ -4,7 +4,7 @@ if [ "$#" == 0 ]; then
     curblightlvl=$(cat /sys/class/backlight/intel_backlight/brightness)
     ((curblightlvl = curblightlvl / 75))
 
-    echo "   backlight is currently: $curblightlvl"
+    echo "$curblightlvl"
 fi
 
 if [ "$#" == 1 ]; then

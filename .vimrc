@@ -23,7 +23,7 @@
     set number
     set relativenumber
     "show current line on
-    set cursorline
+    set nocursorline
     "highlight CursorLine term=bold cterm=bold
     "redraw less often, faster maybe
     set lazyredraw
@@ -56,13 +56,6 @@
 "Mappings"
 """"""""""
 "{{{
-    "Ctrl-S to save
-    "inoremap <c-s> <esc>:w<cr>
-    "nnoremap <c-s> :w<cr>
-    "Ctrl-Q to exit in insert mode
-    "inoremap <c-q> <esc>:q<cr>
-    "nnoremap <c-q> :q<cr>
-    "STOP USING ARROW KEYS
     "double remapped because they still work in insert and I bump them
     noremap <up> <nop>
     noremap <down> <nop>
@@ -77,15 +70,6 @@
     set timeout ttimeoutlen=100
     "use <space> to turn off highlighting after search
     nnoremap <space> :nohl<cr>
-    "quick indent
-    "nnoremap <tab> I<tab><esc>
-    "quick un-indent
-    "nnoremap <shift><tab> I<BS><esc>
-    "same but for blank line
-    "nnoremap <return> o<esc>
-    "I'm sick of bumping s and S, I never use them
-    "nnoremap s <nop>
-    "nnoremap S <nop>
     "source vimrc quickly
     nnoremap VR :source ~/.vimrc<cr>
     "kill F1 help uselessness
@@ -98,15 +82,11 @@
     noremap <leader>nhx :%!xxd -r<cr>
     "make capital Y work like capital C and D
     nnoremap Y y$
-    "save before make - MAJOR BUGGY
-    "cnoremap make w<cr>:make<cr>
     "for easy pane movement
     noremap <C-h> <C-w>h
     noremap <C-j> <C-w>j
     noremap <C-k> <C-w>k
     noremap <C-l> <C-w>l
-    "Tab for autocomplete
-    "inoremap <leader><Tab> <C-N>
     " vim-tmux-navigator
     let g:tmux_navigator_no_mappings = 1
     noremap  <silent> <C-h> :TmuxNavigateLeft<cr>
@@ -116,6 +96,27 @@
     "nnoremap <silent> <C-/> :TmuxNavigatePrevious<cr>
     let g:tmux_navigator_save_on_switch = 0
     let g:tmux_navigator_disable_when_zoomed = 1
+    " Compile  executable with <leader>m
+    nnoremap <leader>m :make<cr>
+    " Test executable with <leader>r
+    " nnoremap <leader>r :!./exe<cr>
+    " Spell checking easier
+    nnoremap s ]s
+    nnoremap S [s
+    " LaTeX macros
+    function! GetName()
+        " Get user input
+        call inputsave()
+        let name = input('region name?: ')
+        call inputrestore()
+        " Print tags with input
+        call setline('.', '\begin{' . name . '}')
+    endfunction
+    nnoremap <leader>c i\color{}<esc>i
+    nnoremap <leader>r o<esc>:call GetName()<cr><esc>^yf}o<esc>p^lcwend<esc>O
+    nnoremap <leader>s :set spell!<cr>
+    nnoremap <leader>b i\textbf{}<esc>i
+    nnoremap <leader>i i\textit{}<esc>i
 "}}}
 
 """""""""""""""
@@ -127,9 +128,13 @@
     " Pathogen
     execute pathogen#infect()
     "set format options specifically AFTER loading filetypes
-    au FileType * set fo+=t fo+=c fo+=r fo+=w fo+=n fo+=l fo+=j
-    au FileType * set fo-=o fo-=q fo-=a fo-=2 fo-=v fo-=b fo-=m fo-=M fo-=B fo-=1
+    au FileType * set fo+=t fo+=c fo+=w fo+=n fo+=l fo+=j
+    au FileType * set fo-=r fo-=o fo-=q fo-=a fo-=2 fo-=v fo-=b fo-=m fo-=M fo-=B fo-=1
     set textwidth=72
+    set makeprg=make\ EXTRA_CFLAGS=-fdiagnostics-color=always 
+    " Fix all this nonsensical fold changing
+    autocmd InsertLeave,WinEnter * setlocal foldmethod=syntax
+    autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
 "}}}
 
 " vim: set foldmethod=marker:

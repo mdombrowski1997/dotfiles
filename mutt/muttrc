@@ -1,0 +1,66 @@
+# Gmail config w/ offlineimap
+set imap_user   = mdombrowski1997@gmail.com
+set imap_pass   = aghqfvmdwqgwhipy
+# set mbox_type   = Maildir
+# set folder      = ~/.mail/gmail
+# set mbox        = "+[Gmail]/all_mail"
+# set postponed   = "+[Gmail]/drafts"
+set folder      = imaps://imap.gmail.com/
+set spoolfile   = "+INBOX"
+mailboxes +INBOX
+set from        = mdombrowski1997@gmail.com@gmail.com
+set mail_check  = 0
+
+# Force secure to get accepted
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+# General config
+set realname        = "Michael Dombrowski"
+set editor          = "vim"
+set forward_format  =   "Fwd: %s"
+
+# Make beautiful with colors
+# https://camolel.org/mutt_config.html
+color quoted    yellow  default
+color quoted1   cyan    default
+color quoted2   magenta default
+color quoted3   red     default
+color quoted4   green   default
+
+color signature blue    default
+color normal    white   black
+color status    brightgreen     blue
+color indicator brightyellow    black
+color error     red     black
+color tree      yellow  black
+color attachment blue   default
+color index     cyan    black   (gmail.com)
+color header    white   black   .*
+color header    brightred       black   (^From\:|^Reply-To\:)
+color header    brightyellow    black   (^To\:|^cc\:^Cc\:)
+
+color body      magenta     default "(ftp|http|https)://[^ ]+"
+color body      magenta     default [-a-z_0-9.]+@[-a-z_0-9.]+
+color body      brightgreen default "^(gpg: )?Good signature"
+color body      brightgreen default "^(gpg: )?encrypted"
+color body      brightred   default "^(gpg: )?Bad signature"
+color body      red         default "^(gpg: )?warning:"
+color body      red         default "^(gpg: ).*failed:"
+
+color message   magenta         default # info messages
+color search    brightyellow    red     # search matches
+color tilde     brightmagenta   default # ~ at bottom of msg
+color markers   red     default # + at beginning of wrapped lines
+color hdrdefault cyan   default # default header lines
+color bold      cyan    default # hilighting bold patterns in body
+color underline cyan    default # hilighting underlined patterns in body
+
+color index green   default ~T  # Tagged
+color index red     default ~D  # Deleted
+
+#vim-esque movement
+bind pager g top
+bind pager j next-line
+bind pager k previous-line
+bind pager G bottom

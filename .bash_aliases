@@ -22,20 +22,8 @@ alias pd='cd -'
 #application launching#
 #######################
 #--------------------------------------------------{{{
-#launch notepadqq for heavier editing
-#alias text='notepadqq &> /dev/null & echo ""'
-#launch chromium browser
-#alias web='chromium-browser &> /dev/null & echo ""'
-#launch system monitor
-#alias usage='gnome-system-monitor &> /dev/null & echo ""'
-#launch libre office write
-#alias lowriter='lowriter &> /dev/null & echo ""'
-#launch spotify
-#alias spotify='spotify &> /dev/null & echo ""'
 #use new location for tmux.conf
 alias tmux='tmux -f ~/.tmux/conf'
-#quick burn cd
-alias burn='cdrecord -v -pad speed=1 dev=/dev/sr0 -dao -swab *.wav'
 #quiet the gdb startup messages
 alias gdb='gdb -q'
 #--------------------------------------------------}}}
@@ -45,25 +33,22 @@ alias gdb='gdb -q'
 ################
 #--------------------------------------------------{{{
 #check battery level
-#alias batt='upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "state|to\ full|percentage" | grep -v "discharging"'
 alias bat='cat /sys/class/power_supply/BAT0/capacity'
 #adjust brightness to % passed in of max_brightness
 alias bl='sudo /home/oh/code/dotfiles/scripts/bl'
 #quick volume manipulation
 alias vol='alsamixer'
-#quick check size of folder
-alias so='du -hs'
+#view current colors
+alias colors='msgcat --color=test | head -n12'
 #--------------------------------------------------}}}
 
 ################
 #system actions#
 ################
 #--------------------------------------------------{{{
-#toggle light dm service
-#alias guion='sudo service lightdm start'
-#alias guioff='sudo service lightdm stop'
+#sudo with aliases
+alias sudo='sudo '
 #make wireless on/off easier
-#alias wifi='nmcli r wifi'
 alias wu='sudo ip link set wlp1s0 up'
 alias wd='sudo ip link set wlp1s0 down'
 #I type 'startx' way too much for 6 chars
@@ -99,36 +84,22 @@ cur()
         fi
     fi
 }
-#seek and destroy process(es)
-#UM - BUT...PKILL THO
-#hunt()
-#{
-    ##search and stop at this process
-    #var=$(ps aux | grep $1 | awk 'BEGIN {} {print $2} END {}')
-    ##get rid of \n's
-    #var=$(echo $var | tr -d "\012")
-    ##confirmation
-    #echo -n "Are you sure you want to kill process(es) $var labeled $1? [y/n]: "
-    #read check
-    #if [ $check == "y" ]; then
-        ##kill desired process(es)
-        #sudo kill $var
-    #else
-        #echo "OK, aborting..."
-    #fi
-#}
-#quick liberty wifi connect
-alias libcon='sudo wpa_supplicant -B -i wlp1s0 -c /etc/wpa_supplicant/Liberty-Secure && sudo dhcpcd -4 wlp1s0 -q'
-#quick home wifi connect
-alias homecon='sudo wpa_supplicant -B -i wlp1s0 -c /etc/wpa_supplicant/05B && sudo dhcpcd -4 wlp1s0 -q'
-#fix psmouse modules faster
-#alias psm='sudo modprobe psmouse'
-#alias psr='sudo modprobe -r psmouse'
-#no need to explain
-alias wifi-menu='sudo wifi-menu'
-#quick on/off of sshd module
-alias startsshd='systemctl start sshd.socket'
-alias stopsshd='systemctl stop sshd.socket'
+# General wifi function instead of the stuff before
+con() {
+    # Incorrect with no params
+    if [ "$#" == 0 ]; then
+        printf "I need at least a network to connect to"
+    # Correct with 1 param
+    elif [ "$#" == 1 ]; then
+        # kill all connections
+        if [ "$1" == "kill" ]; then
+            sudo pkill dhcpcd && sudo pkill wpa_supplicant
+        # Connect to desired wifi
+        elif [ -f "/etc/wpa_supplicant/$1" ]; then
+            sudo wpa_supplicant -B -i wlp1s0 -c "/etc/wpa_supplicant/$1" -qq && sudo dhcpcd -4 wlp1s0 -q -b
+        fi
+    fi
+}
 #alert when done something
 alias beep='echo -ne "\a" && sleep 0.2 && echo -ne "\a" && sleep 0.2 && echo -ne "\a"'
 #for source file templates
@@ -156,8 +127,6 @@ new()
         printf "new [descriptor]\n\tdescriptor = { html | rng | sdl }\n" 
     fi
 }
-#basic stopwatch on ^C
-alias swatch='time while [ true ]; do sleep 1; done'
 #I'm a dingbat, this doesn't need to be in /bin
 alias tw='/home/oh/code/utils/texwatch'
 #gotta go fast
@@ -177,16 +146,19 @@ gpgrep() {
 #now easy combo
 gpedit() {
     if [ "$#" -ne 1 ]; then
-        printf "Hey, make sure you pass a file\n"
+        printf "Hey, make sure you pass just a file\n"
     else
         gpg2 --decrypt $1 > tmp && \
         vim tmp && \
-        gpg2 --output $1 --encrypt tmp && \
+        gpg2 --output $1 --encrypt tmp
+    fi
+    #ensure recryption save has occurred before deleting tmp
+    if [ -f "$1" ]; then
         rm tmp
     fi
 }
 #easy access to website
-alias chief='ssh pi@chiefwhooligan.us.to'
+alias chief='ssh pi@71.179.179.66'
 #better aur interface
 aur() {
     git clone https://aur.archlinux.org/$1.git ~/builds/$1
@@ -206,10 +178,8 @@ alias glc='git show --summary'
 alias glg='git log --graph'
 #quick sleep
 alias zzz='/home/oh/code/dotfiles/scripts/zzz'
-#pacman things
-alias pacsearch='pacman -Ss '
-alias pacinstall='sudo pacman -S '
-alias pacupdate='sudo pacman -Syu'
+#better calendar
+alias cal3='cal --sunday --three'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:

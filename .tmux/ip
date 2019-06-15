@@ -1,5 +1,10 @@
 #!/bin/bash
 
-ip=$(ip -4 -o addr show | grep wlp1s0 | sed 's/^.*inet //' | sed 's:/.*$::')
+network=$(iw wlp1s0 info | grep ssid | cut -d' ' -f 2-)
+ip=$(ip -4 -o addr show wlp1s0 | sed 's/^.*inet //' | sed 's:/.*$::')
 
-echo $ip
+if [ -z "$network" ]; then
+    echo "No network"
+else
+    echo $ip
+fi

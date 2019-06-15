@@ -1,24 +1,32 @@
 #~/.bash_login - executed by bash when login shell starts
 
-#because apparently this file gets sourced alone now
+#source bashrc
 if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
 
-#votd (more like VotLogin)
+#votd (more like VotTermLogin)
 if [ $TERM == 'linux' ]; then
     echo -ne '\n'
     ~/code/garden/mem/mem
+    #please, please, please stop the beeping
+    # Mute on boot
+    amixer -q -c 0 set Master playback 0%
 fi
 
 #print todo list
 if [ -s ~/.todo ]; then
-    echo "ToDo:"
-    cat ~/.todo
-    echo -ne "\n"
-fi
-
-#please, please, please stop the beeping
-if [ $(grep /proc/modules -e 'pcspkr' | cut -f1 -d' ') ]; then
-    sudo rmmod pcspkr
+    let flag=0
+    while read -r; do
+        if [[ $REPLY == *'>'* ]]; then
+            if [[ $flag == 0 ]]; then
+                echo "ToDo:"
+                let flag=1
+            fi
+            echo "$REPLY" | tr -d ">"
+        fi
+    done < "$HOME/.todo"
+    if [[ $flag == 1 ]]; then
+        echo -ne "\n"
+    fi
 fi

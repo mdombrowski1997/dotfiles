@@ -22,7 +22,7 @@ hi Type         term=underline	                    ctermfg=LightGreen	guifg=#60f
 hi Function	    term=bold		                    ctermfg=White       guifg=White
 hi Repeat       term=underline	                    ctermfg=White		guifg=white
 hi Operator				                            ctermfg=Red			guifg=Red
-hi Ignore				                            ctermfg=black		guifg=bg
+hi Ignore				                            ctermfg=Black		guifg=bg
 hi Error	    term=reverse    ctermbg=Red         ctermfg=White       guibg=Red guifg=White
 hi Todo         term=standout   ctermbg=Yellow      ctermfg=Black       guifg=Blue guibg=Yellow
 
@@ -49,3 +49,9 @@ hi link SpecialChar	    Special
 hi link Delimiter	    Special
 hi link SpecialComment  Special
 hi link Debug	        Special
+
+" For Spelling highlight
+hi SpellBad     ctermbg=Red         ctermfg=White
+hi SpellCap     ctermbg=DarkMagenta ctermfg=White
+hi SpellRare    ctermbg=Blue        ctermfg=White
+hi SpellLocal   ctermbg=White       ctermfg=Black
