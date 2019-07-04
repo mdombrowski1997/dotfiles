@@ -192,10 +192,12 @@ bindsym $mod+F10 workspace $workspace10 ; exec "spotify"
 bindsym Print exec "scrot ~/ktp/tmp/scrot_%Y-%m-%d_%H-%M-%S.png -z"
 # in case I want the bar
 bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%Y-%m-%d_%H-%M-%S.png -z"
-# Next Background
+# Next background
 bindsym $mod+n exec '/home/oh/code/dotfiles/scripts/bg_next'
-# Toggle Backgrounds
+# Toggle backgrounds
 bindsym $mod+Shift+n exec '/home/oh/code/dotfiles/scripts/bg_toggle'
+# Blank background
+bindsym $mod+b exec '/home/oh/code/dotfiles/scripts/bg_blank'
 
 #force web into workspace 2
 assign [class="(?i)firefox-developer-edition"] $workspace2

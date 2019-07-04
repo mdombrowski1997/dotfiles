@@ -57,3 +57,5 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 if [ $TERM == 'linux' ]; then
     setfont sun12x22
 fi
+# Please...please get rid of the bell
+set bell-style none

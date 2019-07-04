@@ -157,25 +157,12 @@ gpedit() {
         rm tmp
     fi
 }
-#easy access to website
-alias chief='ssh pi@71.179.179.66'
 #better aur interface
 aur() {
     git clone https://aur.archlinux.org/$1.git ~/builds/$1
 }
 #list git repos
 alias repos='find ~ -name .git'
-#git aliases
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gb='git branch'
-alias gch='git checkout'
-alias gsh='git stash'
-alias gsa='git stash apply'
-alias gl='git log --pretty=oneline'
-alias glc='git show --summary'
-alias glg='git log --graph'
 #quick sleep
 alias zzz='/home/oh/code/dotfiles/scripts/zzz'
 #better calendar

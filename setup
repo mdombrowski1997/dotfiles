@@ -5,14 +5,74 @@
 #set dotfiles folder
 dotfiles="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 
-#.Xresources    {{{
-read -p 'link ~/.Xresources? [y/N] ' response
+#.bashrc        {{{
+read -p 'link ~/.bashrc? [y/N] ' response
 if [ $response == "y" ]; then
-    if [ -f ~/.Xresources ]; then
-        mv ~/.Xresources ~/.Xresources.bak
-        echo "backing up current ~/.Xresources ~/.Xresources.bak"
+    if [ -f ~/.bashrc ]; then
+        mv ~/.bashrc ~/.bashrc.bak
+        echo "backing up current ~/.bashrc as ~/.bashrc.bak"
     fi
-    ln -s $dotfiles/.Xresources ~/.Xresources
+    ln -s $dotfiles/.bashrc ~/.bashrc
+fi
+#}}}
+#.bash_login    {{{
+read -p 'link ~/.bash_login? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.bash_login ]; then
+        mv ~/.bash_login ~/.bash_login.bak
+        echo "backing up current ~/.bash_login ~/.bash_login.bak"
+    fi
+    ln -s $dotfiles/.bash_login ~/.bash_login
+fi
+#}}}
+#.bash_aliases  {{{
+read -p 'link ~/.bash_aliases? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.bash_aliases ]; then
+        mv ~/.bash_aliases ~/.bash_aliases.bak
+        echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
+    fi
+    ln -s $dotfiles/.bash_aliases ~/.bash_aliases
+fi
+#}}}
+#.inputrc         {{{
+read -p 'link ~/.inputrc? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.inputrc ]; then
+        mv ~/.inputrc ~/.inputrc.bak
+        echo "backing up current ~/.inputrc as ~/.inputrc.bak"
+    fi
+    ln -s $dotfiles/.inputrc ~/.inputrc
+fi
+#}}}
+#.tmux/         {{{
+read -p 'link ~/.tmux/? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.tmux.conf ]; then
+        mv ~/.tmux/ ~/.tmux.bak/
+        echo "backing up current ~/.tmux/ as ~/.tmux.bak/"
+    fi
+    ln -s $dotfiles/.tmux ~/.tmux
+fi
+#}}}
+#.vimrc         {{{
+read -p 'link ~/.vimrc? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -f ~/.vimrc ]; then
+        mv ~/.vimrc ~/.vimrc.bak
+        echo "backing up current ~/.vimrc as ~/.vimrc.bak"
+    fi
+    ln -s $dotfiles/.vimrc ~/.vimrc
+fi
+#}}}
+#.vim/  {{{
+read -p 'link ~/.vim/? [y/N] ' response
+if [ $response == "y" ]; then
+    if [ -d ~/.vim/ ]; then
+        mv ~/.vim/ ~/.vim/
+        echo "backing up current ~/.vim/ as ~/.vim.bak/"
+    fi
+    ln -s $dotfiles/vim ~/.vim
 fi
 #}}}
 
@@ -26,73 +86,16 @@ if [ $response == "y" ]; then
     ln -s $dotfiles/.xinitrc ~/.xinitrc
 fi
 #}}}
-
-#.bash_aliases  {{{
-read -p 'link ~/.bash_aliases? [y/N] ' response
+#.Xresources    {{{
+read -p 'link ~/.Xresources? [y/N] ' response
 if [ $response == "y" ]; then
-    if [ -f ~/.bash_aliases ]; then
-        mv ~/.bash_aliases ~/.bash_aliases.bak
-        echo "backing up current ~/.bash_aliases ~/.bash_aliases.bak"
+    if [ -f ~/.Xresources ]; then
+        mv ~/.Xresources ~/.Xresources.bak
+        echo "backing up current ~/.Xresources ~/.Xresources.bak"
     fi
-    ln -s $dotfiles/.bash_aliases ~/.bash_aliases
+    ln -s $dotfiles/.Xresources ~/.Xresources
 fi
 #}}}
-
-#.bash_login    {{{
-read -p 'link ~/.bash_login? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -f ~/.bash_login ]; then
-        mv ~/.bash_login ~/.bash_login.bak
-        echo "backing up current ~/.bash_login ~/.bash_login.bak"
-    fi
-    ln -s $dotfiles/.bash_login ~/.bash_login
-fi
-#}}}
-
-#.bashrc        {{{
-read -p 'link ~/.bashrc? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -f ~/.bashrc ]; then
-        mv ~/.bashrc ~/.bashrc.bak
-        echo "backing up current ~/.bashrc as ~/.bashrc.bak"
-    fi
-    ln -s $dotfiles/.bashrc ~/.bashrc
-fi
-#}}}
-
-#.tmux/         {{{
-read -p 'link ~/.tmux/? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -d ~/.tmux.conf ]; then
-        mv ~/.tmux/ ~/.tmux.bak/
-        echo "backing up current ~/.tmux/ as ~/.tmux.bak/"
-    fi
-    ln -s $dotfiles/.tmux ~/.tmux
-fi
-#}}}
-
-#.vimrc         {{{
-read -p 'link ~/.vimrc? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -f ~/.vimrc ]; then
-        mv ~/.vimrc ~/.vimrc.bak
-        echo "backing up current ~/.vimrc as ~/.vimrc.bak"
-    fi
-    ln -s $dotfiles/.vimrc ~/.vimrc
-fi
-#}}}
-
-#.inputrc         {{{
-read -p 'link ~/.inputrc? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -f ~/.inputrc ]; then
-        mv ~/.inputrc ~/.inputrc.bak
-        echo "backing up current ~/.inputrc as ~/.inputrc.bak"
-    fi
-    ln -s $dotfiles/.inputrc ~/.inputrc
-fi
-#}}}
-
 #.config/i3/    {{{
 read -p 'link ~/.config/i3/? [y/N] ' response
 if [ $response == "y" ]; then
@@ -101,39 +104,6 @@ if [ $response == "y" ]; then
         echo "backing up current ~/.config/i3/ as ~/.config/i3.bak/"
     fi
     ln -s $dotfiles/i3 ~/.config/i3
-fi
-#}}}
-
-#.vim/  {{{
-read -p 'link ~/.vim/? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -d ~/.vim/ ]; then
-        mv ~/.vim/ ~/.vim/
-        echo "backing up current ~/.vim/ as ~/.vim.bak/"
-    fi
-    ln -s $dotfiles/vim ~/.vim
-fi
-#}}}
-
-#.mutt/  {{{
-read -p 'link ~/.mutt/? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -d ~/.mutt/ ]; then
-        mv ~/.mutt/ ~/.mutt/
-        echo "backing up current ~/.mutt/ as ~/.mutt.bak/"
-    fi
-    ln -s $dotfiles/mutt ~/.mutt
-fi
-#}}}
-
-#.newsboat/  {{{
-read -p 'link ~/.newsboat/? [y/N] ' response
-if [ $response == "y" ]; then
-    if [ -d ~/.newsboat/ ]; then
-        mv ~/.newsboat/ ~/.newsboat/
-        echo "backing up current ~/.newsboat/ as ~/.newsboat.bak/"
-    fi
-    ln -s $dotfiles/newsboat ~/.newsboat
 fi
 #}}}
 
