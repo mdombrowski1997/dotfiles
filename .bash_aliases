@@ -161,12 +161,24 @@ gpedit() {
 aur() {
     git clone https://aur.archlinux.org/$1.git ~/builds/$1
 }
+# Forget how to install plugins for pathogen
+pathogen() {
+    if [ "$#" -ne 1 ]; then
+        printf "Pass me one repo and one repo only.\n"
+    else
+        install_path=$(echo "$1" | cut -d'/' -f2)
+        git clone https://github.com/$1 $HOME/.vim/bundle/$install_path
+    fi
+}
+
 #list git repos
 alias repos='find ~ -name .git'
 #quick sleep
 alias zzz='/home/oh/code/dotfiles/scripts/zzz'
 #better calendar
 alias cal3='cal --sunday --three'
+# Nobody wants ghostscript
+alias gs='git status'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:
