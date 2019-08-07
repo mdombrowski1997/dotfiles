@@ -1,8 +1,3 @@
-#TMUX configuration file
-#Michael Dombrowski
-#created 5/11/17
-
-
 #######################################
 #          Remapping/Binding          #
 #######################################
@@ -41,9 +36,6 @@
 
     #make vi key bindings in copy mode
     setw -g mode-keys vi
-    #unbind-key -T copy-mode-vi r      ;       bind-key -T copy-mode-vi r rectangle-toggle
-    #unbind-key -T copy-mode-vi Space  ;       bind-key -T copy-mode-vi v begin-selection
-    #unbind-key -T copy-mode-vi Enter  ;       bind-key -T copy-mode-vi y copy-selection
 
     #get rid of this mouse nonsense
     set-option -g mouse off
@@ -54,12 +46,9 @@
 
     #quick edit todo
     bind-key e new-window "vim ~/.todo"
-    #quick sett window
-    bind-key s new-window -n "sett" "sett"
-    #quick sleep
-    #bind-key s run-shell "systemctl suspend"
-    #quick lock
-    #unbind-key l        ;       bind-key l detach-client \; run-shell "echo "EXIT""
+
+    # Call script to simulate VSCode's C-`
+    bind-key -n C-\ run-shell -b "$HOME/.tmux/zoom_or_term"
 #}}}
 
 #######################################
@@ -101,8 +90,7 @@
     #second phrase prints message at status line to let me know it worked
     bind-key r source-file ~/.tmux/conf \; display-message "tmux.conf reloaded."
 
-    #vim-tmux-navigator things
-    #5 commands are up, left, down, right, and previous panes
+    #vim-tmux-navigator things 5 commands are up, left, down, right, and previous panes
     is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
     | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
     bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"

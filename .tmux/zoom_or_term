@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Simulate VSCode's C-` action when called
+# Assume that there is one pane with vim and an optional lower pane with bash
+
+# If only pane:
+    # 'resize-pane -Z' does nothing
+    # 'select-pane -*' does nothing
+# If not only pane:
+    # 'split-window-pane...' will add undesired pane
+
+is_zoomed=$(tmux list-panes -F '#{window_zoomed_flag}' | head -n1)
+num_panes=$(tmux list-panes -F '#{window_panes}' | head -n1)
+active_pane=$(tmux list-panes -F '#{pane_active}' | grep -n '1' | cut -d':' -f1)
+active_application=$(tmux list-panes -F '#{pane_current_command}' | sed "${active_pane}q;d")
+
+# If in Vim
+if [[ $active_application == 'vim' ]]; then
+    # If it's the only pane
+    if [[ $num_panes == 1 ]]; then
+        # Open Bash below, set height reasonably, go down one pane
+        tmux split-window -v -p 20
+    # If unzoomed
+    elif [[ $is_zoomed != 1 ]]; then
+        # Zoom in
+        tmux resize-pane -Z
+    # If zoomed in with pane below
+    else
+        # Zoom out and move down to Bash
+        tmux resize-pane -Z
+        tmux select-pane -D
+    fi
+# If in Bash
+elif [[ $active_application == 'bash' ]]; then
+    # If it's the only pane
+    if [[ $num_panes == 1 ]]; then
+        # Open Vim above, set height reasonably, go up one pane
+        tmux split-window -v -b -p 80
+    # If unzoomed
+    elif [[ $is_zoomed != 1 ]]; then
+        # Zoom in
+        tmux resize-pane -Z
+    # If zoomed in with pane below
+    else
+        # Zoom out and move up to Vim
+        tmux resize-pane -Z
+        tmux select-pane -U
+    fi
+fi
+
