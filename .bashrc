@@ -45,7 +45,7 @@ PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 #other important variables
 export VISUAL='/usr/bin/vim'
 export EDITOR='/usr/bin/vim'
-export MANPAGER='/usr/bin/vim -M +MANPAGER -'
+export MANPAGER='/usr/bin/vim -M +MANPAGER --not-a-term -'
 export SUDO_EDITOR='/usr/bin/vim'
 export TERMINAL='/usr/bin/st'
 #add ruby gems to path
