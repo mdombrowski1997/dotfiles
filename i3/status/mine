@@ -28,11 +28,6 @@ echo '[]'
 # Now send blocks with information forever:
 while :
 do
-    artist_name=$(cmus-remote -C status | grep "tag artist" | cut -d' ' -f 3- | head -c15)
-    song_name=$(cmus-remote -C status | grep file | cut -d'/' -f 7 | cut -d'.' -f 1 | head -c20)
-    if [ -z "$song_name" ]; then song_name=$(cmus-remote -C status | grep file | cut -d'/' -f 6 | cut -d'.' -f 1 | head -c20); fi
-    if [ -n "$artist_name" -a -n "$song_name" ]; then artist_name="$artist_name : "; fi
-    volume=$(cmus-remote -C status | grep vol_left | cut -d' ' -f 3)
     ip=$(~/.config/i3/status/ip)
     network=$(~/.config/i3/status/network)
     if [ -z "$network" ]; then
@@ -40,7 +35,7 @@ do
         net_color="#606060";
     else
         wireless="$ip on {$network}"
-        net_color="#FF00FF";
+        net_color="#00FF00";
     fi
     ac=$(~/.config/i3/status/ac_check)
     bat=$(~/.config/i3/status/bat)
@@ -55,19 +50,15 @@ do
     else
         bat_color="#FF0000";
     fi
-    datetime=$(~/.config/i3/status/date)
+    date=$(~/.config/i3/status/date)
+    time=$(~/.config/i3/status/time)
 
-    echo -n ",[{\"color\":\"#FFFFFF\", \"full_text\":\"$artist_name$song_name\"}" || exit 1
-    if [ -n "$artist_name" -o -n "$song_name" ]; then
-        echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1;
-        echo -n ",{\"color\":\"#FFFFFF\", \"full_text\":\"vol: $volume%\"}" || exit 1
-        echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1;
-    fi
-    echo -n ",{\"color\":\"$net_color\", \"full_text\":\"$wireless\"}" || exit 1
-    echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1
+    echo -n ",[{\"color\":\"$net_color\", \"full_text\":\"$wireless\"}" || exit 1
+    echo -n ",{\"color\":\"#666666\", \"full_text\":\"|\"}" || exit 1
     echo -n ",{\"color\":\"$bat_color\", \"full_text\":\"$ac $bat%\"}" || exit 1
-    echo -n ",{\"color\":\"#444444\", \"full_text\":\"|\"}" || exit 1
-    echo ",{\"color\":\"#0088FF\", \"full_text\":\"$datetime\"}]" || exit 1
+    echo -n ",{\"color\":\"#666666\", \"full_text\":\"|\"}" || exit 1
+    echo -n ",{\"color\":\"#FF00FF\", \"full_text\":\"$date\"}" || exit 1
+    echo ",{\"color\":\"#00FFFF\", \"full_text\":\"$time\"}]" || exit 1
     sleep 15
 done
 
