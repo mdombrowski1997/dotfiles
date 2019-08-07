@@ -1,52 +1,11 @@
 #!/bin/sh
 
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-sysresources=/etc/X11/xinit/.Xresources
-sysmodmap=/etc/X11/xinit/.Xmodmap
-
-# merge in defaults and keymaps
-
-if [ -f $sysresources ]; then
-
-
-
-
-
-
-
-    xrdb -merge $sysresources
-
+if [ -f "$HOME/.Xresources" ]; then
+    xrdb -merge "$HOME/.Xresources"
 fi
 
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
-
-if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
-    xrdb -merge "$userresources"
-
-fi
-
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-# start some nice programs
-
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
-fi
-
-#MINE
+# Remap Caps-Lock to Ctrl
+setxkbmap us -option ctrl:nocaps
+# Get Caps-Lock by hitting both Shift keys at once
+setxbbmap us -option shift:both_capslock
 exec i3
