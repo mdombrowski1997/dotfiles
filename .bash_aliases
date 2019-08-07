@@ -172,7 +172,7 @@ pathogen() {
 }
 
 #list git repos
-alias repos='find ~ -name .git'
+alias repos="find ~ -name .git | sed 's:/home/oh:~:' | sed 's:/.git::' | grep -v -e .*/dotfiles/.*"
 #quick sleep
 alias zzz='/home/oh/code/dotfiles/scripts/zzz'
 #better calendar
