@@ -19,7 +19,7 @@ if [[ $active_application == 'vim' ]]; then
     # If it's the only pane
     if [[ $num_panes == 1 ]]; then
         # Open Bash below, set height reasonably, go down one pane
-        tmux split-window -v -p 20
+        tmux split-window -v -p 20 -c '#{pane_current_path}'
     # If unzoomed
     elif [[ $is_zoomed != 1 ]]; then
         # Zoom in
@@ -35,7 +35,7 @@ elif [[ $active_application == 'bash' ]]; then
     # If it's the only pane
     if [[ $num_panes == 1 ]]; then
         # Open Vim above, set height reasonably, go up one pane
-        tmux split-window -v -b -p 80
+        tmux split-window -v -b -p 80 -c '#{pane_current_path}'
     # If unzoomed
     elif [[ $is_zoomed != 1 ]]; then
         # Zoom in
