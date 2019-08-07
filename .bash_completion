@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+_con() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    opts="$(ls /etc/wpa_supplicant/) kill"
+
+    if [[ ${cur} == * ]]; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _con con
