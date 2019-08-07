@@ -13,7 +13,7 @@
     "unnecessary
     set noswapfile
     set noshowmode
-    "change tabs to be 4 spaces
+    " Sorry Linux, 8 is excessive
     set tabstop=4
     set softtabstop=4
     set expandtab
@@ -117,6 +117,8 @@
     nnoremap <leader>s :set spell!<cr>
     nnoremap <leader>b i\textbf{}<esc>i
     nnoremap <leader>i i\textit{}<esc>i
+    " Auto matching curlies
+    inoremap {<CR> {}<ESC>i<CR><ESC>O
 "}}}
 
 """""""""""""""
@@ -128,13 +130,26 @@
     " Pathogen
     execute pathogen#infect()
     "set format options specifically AFTER loading filetypes
-    au FileType * set fo+=t fo+=c fo+=w fo+=n fo+=l fo+=j
-    au FileType * set fo-=r fo-=o fo-=q fo-=a fo-=2 fo-=v fo-=b fo-=m fo-=M fo-=B fo-=1
-    set textwidth=72
+    autocmd FileType * set formatoptions+=t formatoptions+=c formatoptions+=w formatoptions+=n formatoptions+=l formatoptions+=j
+    autocmd FileType * set formatoptions-=r formatoptions-=o formatoptions-=q formatoptions-=a formatoptions-=2 formatoptions-=v formatoptions-=b formatoptions-=m formatoptions-=M formatoptions-=B formatoptions-=1
+    set textwidth=80
     set makeprg=make\ EXTRA_CFLAGS=-fdiagnostics-color=always 
     " Fix all this nonsensical fold changing
     autocmd InsertLeave,WinEnter * setlocal foldmethod=syntax
     autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
+    " My *.h files are generally c, not cpp
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+    " Syntastic plugin settings
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatusLineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 1
+    let g:syntastic_c_checkers = ['gcc']
+    let g:ycm_autoclose_preview_window_after_completion = 1
 "}}}
 
 " vim: set foldmethod=marker:
