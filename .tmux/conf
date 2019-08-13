@@ -75,7 +75,7 @@
     set-option -g window-status-format "#W"
     #make right side of status bar have git branch, batt, and time/date
     set-option -g status-right "#[fg=green,bold]#(~/.tmux/ip)"
-    set-option -ag status-right " #[default]| #[fg=#(~/.tmux/get_power_color),bold]#(~/.tmux/ac_check)#(~/.tmux/bat)%"
+    set-option -ag status-right " #[default]| #(~/.tmux/get_power_color)#(~/.tmux/ac_check)#(~/.tmux/bat)%"
     set-option -ag status-right " #[default]| #[fg=magenta,bold]%m/%d/%Y #[fg=cyan,bold]%H:%M"
     set-option -ag status-right " #[default]| #[fg=red,bold]#(~/.tmux/branch #{pane_current_path}) "
 #}}}

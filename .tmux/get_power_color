@@ -3,15 +3,14 @@
 bat=$(cat /sys/class/power_supply/BAT0/capacity)
 
 if [ $bat -ge 80 ]; then
-    bat_color="#00FF00";
+    echo -n "#[fg=#00FF00,bold]"
 elif [ $bat -ge 60 ]; then
-    bat_color="#80FF00";
+    echo -n "#[fg=#80FF00,bold]"
 elif [ $bat -ge 40 ]; then
-    bat_color="#FFFF00";
+    echo -n "#[fg=#FFFF00,bold]"
 elif [ $bat -ge 20 ]; then
-    bat_color="#FF8000";
+    echo -n "#[fg=#FF8000,bold]"
 else
-    bat_color="#FF0000";
+    echo -n "#[fg=#FF0000,bold]"
 fi
 
-echo $bat_color
