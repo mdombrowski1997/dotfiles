@@ -3,14 +3,14 @@
 bat=$(cat /sys/class/power_supply/BAT0/capacity)
 
 if [ $bat -ge 80 ]; then
-    echo -n "#[fg=#00FF00,bold]"
+    echo -n "#[fg=#58DE33,bold]"
 elif [ $bat -ge 60 ]; then
-    echo -n "#[fg=#80FF00,bold]"
+    echo -n "#[fg=#CDF725,bold]"
 elif [ $bat -ge 40 ]; then
-    echo -n "#[fg=#FFFF00,bold]"
+    echo -n "#[fg=#E2E827,bold]"
 elif [ $bat -ge 20 ]; then
-    echo -n "#[fg=#FF8000,bold]"
+    echo -n "#[fg=#FFC926,bold]"
 else
-    echo -n "#[fg=#FF0000,bold]"
+    echo -n "#[fg=#F5421E,bold]"
 fi
 
