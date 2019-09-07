@@ -1,0 +1,48 @@
+#! /bin/bash
+
+# In the event that 'pacman -S' fails to find and install 'str', show top search 
+# results for 'str' with numbered options to select one of those instead
+
+usage() {
+    printf "Usage: get <targets>\n"
+}
+
+if [[ $# -ne 1 ]]; then
+    printf "Error: I need exactly 1 package to install.\n"
+    usage
+    exit 1
+fi
+
+res=$(sudo pacman -S "$1" 2>&1)
+
+is_not_sudo=$(printf "${res}" | grep -E '^error: you cannot perform this operation unless you are root.$')
+pkg_not_found=$(printf "${res}" | grep -E '^error: target not found: .*$')
+NUM_OPTIONS=5
+
+if [[ -n $is_not_sudo ]]; then
+    printf "${is_not_sudo}\n"
+    exit 2
+elif [[ -n $pkg_not_found ]]; then
+    printf "${pkg_not_found}\nSelect an alternate to install:\n"
+    OLDIFS=$IFS
+    IFS=$'\n'
+    options=($(pacman -Ss "$1" 2>&1 | grep -E '^\w' | cut -d'/' -f2 | head -n ${NUM_OPTIONS}))
+    IFS=$OLDIFS
+    for ((i = 1; i < ${NUM_OPTIONS}; ++i)); do
+        printf "$i) ${options[$i-1]}\n"
+    done
+    printf "0) Exit without installing anything.\nChoice: "
+    read choice
+    if [[ $choice -eq 0 ]]; then
+        exit 0
+    elif [[ $choice -lt ${NUM_OPTIONS} ]]; then
+        sudo pacman -S "$(printf "${options[$choice]}" | cut -d' ' -f1)"
+    else
+        printf "Error: That's not a valid option.\n"
+    fi
+    exit 3
+else
+    printf "${res}"
+    exit 0
+fi
+

@@ -179,6 +179,8 @@ alias zzz='/home/oh/code/dotfiles/scripts/zzz'
 alias cal3='cal --sunday --three'
 # Nobody wants ghostscript
 alias gs='git status'
+# Typos be gone!
+alias getpkg='/home/oh/code/dotfiles/scripts/pac_fail'
 #--------------------------------------------------}}}
 
 # vim: set foldmethod=marker:
