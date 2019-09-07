@@ -295,7 +295,5 @@ bindsym XF86AudioRaiseVolume exec '/home/oh/code/dotfiles/scripts/raise_volume'
 bindsym XF86MonBrightnessDown exec '/home/oh/code/dotfiles/scripts/lower_bl'
 bindsym XF86MonBrightnessUp exec '/home/oh/code/dotfiles/scripts/raise_bl'
 # toggles rfkill wifi bindsym (XF86WLAN ||) XF86RFKill exec '/dev/null'
-# Please make Caps Lock stop
-bindsym CapsLock exec '/usr/bin/false'
 
 # vim: set foldmethod=marker:
