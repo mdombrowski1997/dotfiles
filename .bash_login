@@ -5,16 +5,22 @@ if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
 fi
 
-#votd (more like VotTermLogin)
 if [ $TERM == 'linux' ]; then
+    #votd (more like VotTermLogin)
     echo -ne '\n'
     ~/code/garden/mem/mem
-    #please, please, please stop the beeping
+
+    # Please, please, please stop the beeping
     # Mute on boot
     amixer -q -c 0 set Master playback 0%
+
+    # Start i3-wm
+    if [ -z "$(pgrep '^i3$')" ]; then
+        startx
+    fi
 fi
 
-#print todo list
+# Print todo list
 if [ -s ~/.todo ]; then
     let flag=0
     while read -r; do
@@ -30,3 +36,4 @@ if [ -s ~/.todo ]; then
         echo -ne "\n"
     fi
 fi
+
