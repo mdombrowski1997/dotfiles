@@ -2,4 +2,6 @@
 
 main_session='work'
 
-tmux attach-session -t $main_session || tmux -f ~/.tmux/conf new-session -s $main_session
+tmux -2 attach-session -t $main_session ||
+    tmux -2 -f ~/.tmux/conf new-session -s $main_session
+

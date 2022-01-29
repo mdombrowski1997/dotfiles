@@ -4,15 +4,25 @@
 "Colors, Personalizations, and Such"
 """"""""""""""""""""""""""""""""""""
 "{{{
-    set nowrap
-    "set colors
+    set nocompatible
+    execute pathogen#infect()
     set t_Co=256
-    colorscheme elfking
+    if exists('+termguicolors')
+        let &t_8f = "\<Esc>[38;2%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2%lu;%lu;%lum"
+    endif
+    syntax on
+    set background=dark
+    colorscheme solarized
+    filetype plugin on
+    set showmode
+
+
+
     "Don't keep a history I don't want
     let g:netrw_dirhistmax = 0
     "unnecessary
     set noswapfile
-    set noshowmode
     " Sorry Linux, 8 is excessive
     set tabstop=4
     set softtabstop=4
@@ -24,20 +34,13 @@
     set relativenumber
     "show current line on
     set nocursorline
-    "highlight CursorLine term=bold cterm=bold
     "redraw less often, faster maybe
     set lazyredraw
     "show matches to parentheses and such
     "set showmatch
     "only show matches for 3 tenths of a sec
     "set matchtime=3
-    "dont use that harsh white line on folds
-    hi Folded ctermbg=0
-    hi Folded ctermfg=3
-    "Finally get some decent comment colors
-    hi Comment ctermfg=darkgreen
     "enable syntax processing
-    syntax enable
     filetype plugin indent on
     set modeline
     "enable folding
@@ -50,39 +53,26 @@
     set incsearch
     "highlight all matches
     set hlsearch
+    set nowrap
 "}}}
 
 """"""""""
 "Mappings"
 """"""""""
 "{{{
-    "double remapped because they still work in insert and I bump them
-    noremap <up> <nop>
-    noremap <down> <nop>
-    noremap <left> <nop>
-    noremap <right> <nop>
-    inoremap <up> <nop>
-    inoremap <down> <nop>
-    inoremap <left> <nop>
-    inoremap <right> <nop>
-    "further killing of arrow keys to stop 'O' lag
+    " Further killing of arrow keys to stop 'O' lag
     set noesckeys
     set timeout ttimeoutlen=100
     "use <space> to turn off highlighting after search
     nnoremap <space> :nohl<cr>
-    "source vimrc quickly
-    nnoremap VR :source ~/.vimrc<cr>
-    "kill F1 help uselessness
-    noremap <F1> <nop>
-    inoremap <F1> <nop>
-    "line-by-line undo tree granularity
+    " Line-by-line undo tree granularity
     inoremap <cr> <C-g>u<cr>
     "enter/exit hex mode
     noremap <leader>hx :%!xxd<cr> :set binary<cr>
     noremap <leader>nhx :%!xxd -r<cr>
     "make capital Y work like capital C and D
     nnoremap Y y$
-    "for easy pane movement
+    " For easy pane movement
     noremap <C-h> <C-w>h
     noremap <C-j> <C-w>j
     noremap <C-k> <C-w>k
@@ -118,18 +108,19 @@
     nnoremap <leader>b i\textbf{}<esc>i
     nnoremap <leader>i i\textit{}<esc>i
     " Auto matching curlies
-    inoremap {<CR> {}<ESC>i<CR><ESC>O
+    inoremap {<CR> {}<ESC>i<CR><ESC>zoO
 "}}}
 
 """""""""""""""
 "Misc Settings"
 """""""""""""""
 "{{{
-    " ignore Vi compat
-    set nocompatible
-    " Pathogen
-    execute pathogen#infect()
-    "set format options specifically AFTER loading filetypes
+    " Show me extra
+    set scrolloff=2
+    set sidescrolloff=2
+    set sidescroll=1
+
+    " Set format options specifically AFTER loading filetypes
     autocmd FileType * set formatoptions+=t formatoptions+=c formatoptions+=w formatoptions+=n formatoptions+=l formatoptions+=j
     autocmd FileType * set formatoptions-=r formatoptions-=o formatoptions-=q formatoptions-=a formatoptions-=2 formatoptions-=v formatoptions-=b formatoptions-=m formatoptions-=M formatoptions-=B formatoptions-=1
     set textwidth=80
@@ -139,17 +130,6 @@
     autocmd InsertEnter,WinLeave * setlocal foldmethod=manual
     " My *.h files are generally c, not cpp
     autocmd BufRead,BufNewFile *.h,*.c set filetype=c
-    " Syntastic plugin settings
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatusLineFlag()}
-    set statusline+=%*
-
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 1
-    let g:syntastic_c_checkers = ['gcc']
-    let g:ycm_autoclose_preview_window_after_completion = 1
 "}}}
 
 " vim: set foldmethod=marker:

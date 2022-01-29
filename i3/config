@@ -7,9 +7,6 @@ font pango:monospace 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -177,18 +174,9 @@ new_window none
 #no edge borders
 hide_edge_borders both
 
-#auto launch bindings
-bindsym $mod+F1 workspace $workspace1 ; exec "i3-sensible-terminal -e /home/oh/.config/i3/F1"
-bindsym $mod+F2 workspace $workspace2 ; exec "firefox-developer-edition"
-bindsym $mod+F3 workspace $workspace3 ; exec "evince"
-bindsym $mod+F4 workspace $workspace4 ; exec "libreoffice"
-bindsym $mod+F5 workspace $workspace5 ; exec "discord"
-bindsym $mod+F6 workspace $workspace6 ; exec "eog"
-bindsym $mod+F7 workspace $workspace7 ; exec "i3-sensible-terminal -e htop"
-bindsym $mod+F8 workspace $workspace8 ; exec "gimp"
-bindsym $mod+F9 workspace $workspace9 ; exec "i3-sensible-terminal -e ipython --no-confirm-exit"
-bindsym $mod+F10 workspace $workspace10 ; exec "spotify"
-#scrot with prntscrn
+# Auto launch bindings
+bindsym $mod+Return exec "i3-sensible-terminal -e /home/oh/.config/i3/F1"
+# Scrot with prntscrn
 bindsym Print exec "scrot ~/ktp/tmp/scrot_%Y-%m-%d_%H-%M-%S.png -z"
 # in case I want the bar
 bindsym $mod+Print exec "scrot ~/ktp/tmp/scrot_%Y-%m-%d_%H-%M-%S.png -z"
@@ -284,16 +272,28 @@ bindsym $mod+space sticky toggle
 bindsym $mod+bracketleft scratchpad show
 bindsym $mod+bracketright move scratchpad
 
-#multimedia bindings
+# Multimedia bindings
 bindsym XF86AudioMute exec '/home/oh/code/dotfiles/scripts/mute'
 bindsym XF86AudioLowerVolume exec '/home/oh/code/dotfiles/scripts/lower_volume'
 bindsym XF86AudioRaiseVolume exec '/home/oh/code/dotfiles/scripts/raise_volume'
-# bindsym XF86AudioPrev exec 'cmus-remote --prev'
-# bindsym XF86AudioPlay exec 'cmus-remote --pause'
-# bindsym XF86AudioNext exec 'cmus-remote --next'
+bindsym XF86AudioPrev exec '/home/oh/code/dotfiles/scripts/previous_track'
+bindsym XF86AudioPlay exec '/home/oh/code/dotfiles/scripts/play_pause'
+bindsym XF86AudioNext exec '/home/oh/code/dotfiles/scripts/next_track'
 #other fn+keys
 bindsym XF86MonBrightnessDown exec '/home/oh/code/dotfiles/scripts/lower_bl'
 bindsym XF86MonBrightnessUp exec '/home/oh/code/dotfiles/scripts/raise_bl'
 # toggles rfkill wifi bindsym (XF86WLAN ||) XF86RFKill exec '/dev/null'
+
+# Toggle the dashboard
+# TODO: Script this, it doesn't look like i3 can toggle the scratchpad
+# Make it very passive
+no_focus [title="^Dashboard$"]
+bindsym $mod+backslash exec '/home/oh/code/dashboard/toggle.sh'
+
+# Help Caps Lock stay dead with an external keyboard
+bindsym Caps_Lock exec '/dev/null'
+
+# Three finger tap (simulates middle button) toggles audio
+bindsym --whole-window button2 exec '/home/oh/code/dotfiles/scripts/play_pause'
 
 # vim: set foldmethod=marker:

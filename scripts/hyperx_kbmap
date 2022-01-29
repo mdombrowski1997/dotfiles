@@ -1,0 +1,8 @@
+#! /bin/bash
+
+id=$(xinput -list | grep 'HyperX' | grep -v 'Consumer Control' | grep 'id=' | head -n1 | cut -f2 -d'=' | cut -f1 -d'[')
+
+# Remap Caps-Lock to Ctrl
+setxkbmap us -option ctrl:nocaps -device $id
+# Get Caps-Lock by hitting both Shift keys at once
+setxkbmap us -option shift:both_capslock -device $id

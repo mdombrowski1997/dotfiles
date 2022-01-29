@@ -42,7 +42,7 @@ elif [[ -n $pkg_not_found ]]; then
     fi
     exit 3
 else
-    printf "${res}"
+    printf "${res}\n"
     exit 0
 fi
 
